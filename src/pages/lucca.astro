@@ -1,0 +1,533 @@
+---
+export const prerender = true;
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTAFooter from '../components/ContactCTAFooter.astro';
+import facadeDay from '../assets/images/exterior/facade-day.jpg';
+---
+
+<BaseLayout
+  title="Giada Palace a Lucca — a 15 minuti a piedi dal centro storico"
+  description="Giada Palace si trova a 1,2 km dalle Mura di Lucca, con parcheggio privato gratuito e fermata bus per il centro a pochi passi. Scopri come raggiungere il cuore della città."
+  alternates={{ en: '/en/lucca' }}
+>
+
+  <!-- Hero-lite -->
+  <section class="lucca-hero-lite" aria-label="Giada Palace e Lucca">
+    <div class="container lucca-hero-content">
+      <span class="eyebrow lucca-eyebrow">— Lucca —</span>
+      <h1 class="lucca-h1">
+        A 15 minuti a piedi<br>
+        <em>dal centro storico</em>
+      </h1>
+      <p class="lucca-hero-sub">A 1,2 km dalle Mura rinascimentali — parcheggio privato gratuito incluso</p>
+    </div>
+  </section>
+
+  <!-- Intro + photo -->
+  <section class="lucca-intro-section">
+    <div class="container lucca-intro-grid">
+
+      <div class="lucca-intro-text">
+        <span class="eyebrow">— La posizione —</span>
+        <h2>Fuori dalle mura, a due passi da tutto</h2>
+        <p>
+          Giada Palace si trova appena fuori dalla cerchia delle Mura, nel quartiere
+          residenziale di Lucca Est. La struttura dispone di <strong>parcheggio privato
+          gratuito</strong>, una comodità rara per chi visita la città in auto. A
+          cinquanta metri dalla struttura trovate la <strong>fermata bus per il centro</strong>,
+          che vi porta direttamente alla Porta Elisa in pochi minuti.
+        </p>
+        <p>
+          Rispetto a un hotel in centro storico, il Giada Palace vi offre silenzio,
+          spazio, e un accesso rapido alle principali attrazioni senza il traffico
+          delle zone a traffico limitato.
+        </p>
+      </div>
+
+      <div class="lucca-intro-img-wrap">
+        <Image
+          src={facadeDay}
+          alt="La facciata del Giada Palace in una giornata di sole, con il giardino esterno"
+          widths={[640, 960, 1280]}
+          sizes="(max-width: 767px) 100vw, 50vw"
+          class="lucca-intro-img"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Distances grid -->
+  <section class="lucca-distances-section" aria-labelledby="distances-heading">
+    <div class="container">
+      <h2 id="distances-heading" class="lucca-section-heading">Distanze principali</h2>
+      <div class="lucca-distances-grid">
+
+        <div class="lucca-dist-card">
+          <div class="lucca-dist-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M3 9h18M9 9v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="lucca-dist-label">Mura di Lucca</p>
+            <p class="lucca-dist-value">1,2 km</p>
+            <p class="lucca-dist-note">~15 min a piedi</p>
+          </div>
+        </div>
+
+        <div class="lucca-dist-card">
+          <div class="lucca-dist-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="lucca-dist-label">Aeroporto di Pisa</p>
+            <p class="lucca-dist-value">30 km</p>
+            <p class="lucca-dist-note">~30 min in auto</p>
+          </div>
+        </div>
+
+        <div class="lucca-dist-card">
+          <div class="lucca-dist-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 9c0 4.97 4.03 9 9 9s9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3 9s0-6 9-6 9 6 9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="12" y1="18" x2="12" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="lucca-dist-label">Mare (Viareggio)</p>
+            <p class="lucca-dist-value">25 km</p>
+            <p class="lucca-dist-note">~25 min in auto</p>
+          </div>
+        </div>
+
+        <div class="lucca-dist-card">
+          <div class="lucca-dist-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="lucca-dist-label">Firenze</p>
+            <p class="lucca-dist-value">75 km</p>
+            <p class="lucca-dist-note">~1 h in auto</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="lucca-highlights-section" aria-labelledby="highlights-heading">
+    <div class="container">
+      <span class="eyebrow">— Da non perdere —</span>
+      <h2 id="highlights-heading" class="lucca-section-heading">Le mete imperdibili</h2>
+      <div class="lucca-highlights-grid">
+
+        <article class="lucca-highlight-card">
+          <div class="lucca-highlight-num" aria-hidden="true">01</div>
+          <h3 class="lucca-highlight-name">Le Mura Rinascimentali</h3>
+          <p class="lucca-highlight-body">
+            Quattro chilometri di mura intatte del XVI secolo, percorribili a piedi o
+            in bicicletta. La passeggiata sulle mura offre una prospettiva unica sulla
+            città e sui viali alberati sottostanti. La partenza più comoda dal Giada
+            Palace è Porta Elisa, raggiungibile in bus o in 15 minuti a piedi.
+          </p>
+        </article>
+
+        <article class="lucca-highlight-card">
+          <div class="lucca-highlight-num" aria-hidden="true">02</div>
+          <h3 class="lucca-highlight-name">Piazza dell'Anfiteatro</h3>
+          <p class="lucca-highlight-body">
+            Ellisse perfetta costruita sulle fondamenta di un anfiteatro romano del
+            II secolo d.C. Le case medievali seguono ancora il profilo dell'arena
+            antica. Oggi è il cuore della vita cittadina: caffè, ristoranti e mercato
+            locale si alternano sotto i portici.
+          </p>
+        </article>
+
+        <article class="lucca-highlight-card">
+          <div class="lucca-highlight-num" aria-hidden="true">03</div>
+          <h3 class="lucca-highlight-name">Torre Guinigi</h3>
+          <p class="lucca-highlight-body">
+            La torre medievale della famiglia Guinigi è celebre per il giardino
+            pensile di lecci secolari che cresce sulla sommità a 44 metri di altezza.
+            Dalla terrazza si ha una vista panoramica sull'intera città e sulle Alpi
+            Apuane nelle giornate limpide.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Itineraries -->
+  <section class="lucca-itinerary-section" aria-labelledby="itinerary-heading">
+    <div class="container">
+      <span class="eyebrow">— Consigli pratici —</span>
+      <h2 id="itinerary-heading" class="lucca-section-heading">Due giorni a Lucca</h2>
+      <div class="lucca-itinerary-grid">
+
+        <div class="lucca-day-card">
+          <div class="lucca-day-label">Giorno 1</div>
+          <h3 class="lucca-day-title">Centro storico e Mura</h3>
+          <ol class="lucca-day-list">
+            <li>Mattina: bus da Giada Palace fino a Porta Elisa, passeggiata sulle Mura verso ovest fino a Porta San Pietro</li>
+            <li>Metà mattina: discesa alle Mura e visita al Duomo di San Martino con la Croce di Volto Santo</li>
+            <li>Pranzo: Piazza dell'Anfiteatro — tavoli all'aperto sotto il loggiato</li>
+            <li>Pomeriggio: Torre Guinigi e Museo Nazionale di Palazzo Mansi</li>
+            <li>Sera: aperitivo in Via Fillungo, poi cena nel centro storico</li>
+          </ol>
+        </div>
+
+        <div class="lucca-day-card">
+          <div class="lucca-day-label">Giorno 2</div>
+          <h3 class="lucca-day-title">Dintorni e gita</h3>
+          <ol class="lucca-day-list">
+            <li>Mattina: escursione in auto alle ville lucchesi — Villa Reale di Marlia o Villa Torrigiani</li>
+            <li>Metà mattina: borghi delle Colline Lucchesi verso Montecarlo DOC</li>
+            <li>Pranzo: ristorante con vista sulle vigne</li>
+            <li>Pomeriggio: rientro a Lucca, noleggio bici alle Mura per il giro completo</li>
+            <li>Sera: concerto o evento in Piazza Napoleone (frequenti in estate)</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map placeholder -->
+  <section class="lucca-map-section" aria-labelledby="map-heading">
+    <div class="container">
+      <h2 id="map-heading" class="lucca-section-heading">Come raggiungerci</h2>
+    </div>
+    <div class="lucca-map-placeholder" role="img" aria-label="Mappa interattiva — accetta i cookie per visualizzarla">
+      <div class="lucca-map-placeholder-inner">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="lucca-map-icon">
+          <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <p class="lucca-map-placeholder-text">
+          La mappa interattiva è disponibile dopo aver accettato i cookie di terze parti.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTAFooter />
+
+</BaseLayout>
+
+<style>
+  /* Hero-lite */
+  .lucca-hero-lite {
+    background: var(--gp-cream);
+    padding-block: var(--space-20);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gp-border-soft);
+  }
+
+  .lucca-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 640px;
+  }
+
+  .lucca-eyebrow { color: var(--gp-muted); }
+
+  .lucca-h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-tight);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .lucca-h1 em {
+    font-style: italic;
+    color: var(--gp-gold);
+  }
+
+  .lucca-hero-sub {
+    font-size: var(--text-md);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  /* Intro */
+  .lucca-intro-section {
+    padding-block: var(--space-20);
+    background: var(--gp-white);
+  }
+
+  .lucca-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .lucca-intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .lucca-intro-text .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
+
+  .lucca-intro-text h2 {
+    font-size: var(--text-2xl);
+    margin: 0;
+  }
+
+  .lucca-intro-text p {
+    font-size: var(--text-md);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .lucca-intro-text strong {
+    color: var(--gp-ink);
+    font-weight: var(--weight-semibold);
+  }
+
+  .lucca-intro-img-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .lucca-intro-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Shared section heading */
+  .lucca-section-heading {
+    font-size: var(--text-xl);
+    color: var(--gp-ink);
+    margin-bottom: var(--space-10);
+  }
+
+  /* Distances */
+  .lucca-distances-section {
+    padding-block: var(--space-16);
+    background: var(--gp-cream);
+  }
+
+  .lucca-distances-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .lucca-dist-card {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--gp-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gp-border-soft);
+  }
+
+  .lucca-dist-icon {
+    flex-shrink: 0;
+    color: var(--gp-gold);
+    margin-top: 2px;
+  }
+
+  .lucca-dist-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gp-muted);
+    margin: 0 0 var(--space-1);
+  }
+
+  .lucca-dist-value {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--gp-ink);
+    margin: 0 0 var(--space-1);
+  }
+
+  .lucca-dist-note {
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  /* Highlights */
+  .lucca-highlights-section {
+    padding-block: var(--space-20);
+    background: var(--gp-white);
+  }
+
+  .lucca-highlights-section .eyebrow { display: block; margin-bottom: var(--space-3); }
+
+  .lucca-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  .lucca-highlight-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    background: var(--gp-cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gp-border-soft);
+  }
+
+  .lucca-highlight-num {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-regular);
+    color: var(--gp-border-soft);
+    line-height: 1;
+  }
+
+  .lucca-highlight-name {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-regular);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .lucca-highlight-body {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  /* Itineraries */
+  .lucca-itinerary-section {
+    padding-block: var(--space-20);
+    background: var(--gp-cream);
+  }
+
+  .lucca-itinerary-section .eyebrow { display: block; margin-bottom: var(--space-3); }
+
+  .lucca-itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .lucca-day-card {
+    padding: var(--space-8);
+    background: var(--gp-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gp-border-soft);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .lucca-day-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gp-gold);
+  }
+
+  .lucca-day-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-regular);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .lucca-day-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-left: var(--space-5);
+    margin: 0;
+  }
+
+  .lucca-day-list li {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    padding-left: var(--space-2);
+  }
+
+  .lucca-day-list li::marker {
+    color: var(--gp-gold);
+    font-weight: var(--weight-semibold);
+  }
+
+  /* Map placeholder */
+  .lucca-map-section {
+    padding-top: var(--space-16);
+    background: var(--gp-white);
+  }
+
+  .lucca-map-placeholder {
+    width: 100%;
+    height: 360px;
+    background: var(--gp-cream);
+    border-top: 1px solid var(--gp-border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lucca-map-placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .lucca-map-icon { color: var(--gp-muted); }
+
+  .lucca-map-placeholder-text {
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .lucca-distances-grid { grid-template-columns: repeat(2, 1fr); }
+    .lucca-highlights-grid { grid-template-columns: 1fr; }
+    .lucca-itinerary-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 767px) {
+    .lucca-h1 { font-size: var(--text-2xl); }
+    .lucca-intro-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+    .lucca-distances-grid { grid-template-columns: 1fr; }
+    .lucca-map-placeholder { height: 240px; }
+  }
+</style>

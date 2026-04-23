@@ -1,0 +1,363 @@
+---
+export const prerender = true;
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTAFooter from '../components/ContactCTAFooter.astro';
+import poolHero from '../assets/images/pool/hero-sunset.jpg';
+---
+
+<BaseLayout
+  title="Piscina all'aperto da aprile a ottobre | Giada Palace"
+  description="Piscina all'aperto riservata agli ospiti Giada Palace, aperta da aprile a ottobre. Area lettini, ombrelloni e giardino attrezzato vicino a Lucca."
+  alternates={{ en: '/en/pool' }}
+>
+  <!-- Hero -->
+  <section class="pool-hero" aria-label="La piscina del Giada Palace">
+    <Image
+      src={poolHero}
+      alt=""
+      aria-hidden="true"
+      class="pool-hero-bg"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="pool-hero-overlay" aria-hidden="true"></div>
+    <div class="pool-hero-content container">
+      <span class="eyebrow pool-hero-eyebrow">— La piscina —</span>
+      <h1 class="pool-hero-h1">
+        Fresca d'estate,<br>
+        <em>da aprile a ottobre</em>
+      </h1>
+      <p class="pool-hero-subtitle">Riservata esclusivamente agli ospiti Giada Palace</p>
+      <span class="pool-season-pill">Aperta da aprile a ottobre</span>
+    </div>
+  </section>
+
+  <!-- Description -->
+  <section class="pool-desc-section">
+    <div class="container pool-desc-inner">
+      <div class="pool-desc-text">
+        <span class="eyebrow">— La nostra piscina —</span>
+        <h2>Un angolo di fresco a pochi passi dalla camera</h2>
+        <p>
+          Dopo una giornata sulle mura o in ufficio, la piscina all'aperto ti aspetta.
+          Area lettini, ombrelloni e giardino attrezzato, riservati agli ospiti.
+          La piscina è circolare con acqua trasparente e si affaccia sul giardino privato della struttura.
+        </p>
+        <p>
+          Ideale per rilassarsi dopo una mattinata di visita al centro storico, o per
+          godersi il tramonto toscano senza spostarsi dalla struttura.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules & hours -->
+  <section class="pool-rules-section" aria-labelledby="rules-heading">
+    <div class="container">
+      <h2 id="rules-heading" class="pool-rules-heading">Orari e regole</h2>
+      <div class="pool-rules-grid">
+
+        <div class="pool-info-card">
+          <div class="pool-info-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 7v5.5l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="pool-info-label">Orari di accesso</p>
+            <p class="pool-info-value">08:00 – 21:00</p>
+          </div>
+        </div>
+
+        <div class="pool-info-card">
+          <div class="pool-info-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C12 2 4 7 4 13.5C4 17.09 7.58 20 12 20C16.42 20 20 17.09 20 13.5C20 7 12 2 12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="pool-info-label">Stagione</p>
+            <p class="pool-info-value">Aprile – Ottobre</p>
+          </div>
+        </div>
+
+        <div class="pool-info-card">
+          <div class="pool-info-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="pool-info-label">Accesso</p>
+            <p class="pool-info-value">Solo ospiti Giada Palace</p>
+          </div>
+        </div>
+
+        <div class="pool-info-card">
+          <div class="pool-info-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6h18M3 12h18M3 18h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="pool-info-label">Regolamento</p>
+            <ul class="pool-rules-list">
+              <li>Doccia obbligatoria prima dell'accesso</li>
+              <li>Asciugamani disponibili in struttura</li>
+              <li>Silenzio dopo le 22:00</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-width photo -->
+  <div class="pool-photo-section">
+    <Image
+      src={poolHero}
+      alt="La piscina rotonda del Giada Palace al tramonto, con acqua cristallina e vista sul giardino"
+      widths={[768, 1200, 1800]}
+      sizes="100vw"
+      class="pool-photo-img"
+      loading="lazy"
+    />
+    <p class="pool-photo-caption container">La piscina del Giada Palace al tramonto</p>
+  </div>
+
+  <ContactCTAFooter />
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .pool-hero {
+    position: relative;
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .pool-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    z-index: 0;
+  }
+
+  .pool-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(30, 45, 61, 0.80) 0%,
+      rgba(30, 45, 61, 0.52) 50%,
+      rgba(30, 45, 61, 0.18) 80%,
+      transparent 100%
+    );
+    z-index: 1;
+  }
+
+  .pool-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-block: var(--space-20);
+    max-width: 640px;
+  }
+
+  .pool-hero-eyebrow { color: var(--gp-pool-light); }
+
+  .pool-hero-h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-tight);
+    color: var(--gp-white);
+    margin: 0;
+  }
+
+  .pool-hero-h1 em {
+    font-style: italic;
+    color: var(--gp-pool-light);
+  }
+
+  .pool-hero-subtitle {
+    font-size: var(--text-md);
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+  }
+
+  .pool-season-pill {
+    display: inline-block;
+    align-self: flex-start;
+    padding: var(--space-2) var(--space-4);
+    background: var(--gp-pool);
+    color: var(--gp-white);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    border-radius: 100px;
+  }
+
+  /* Description */
+  .pool-desc-section {
+    padding-block: var(--space-20);
+    background: var(--gp-cream);
+  }
+
+  .pool-desc-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .pool-desc-text {
+    max-width: var(--max-width-reading);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .pool-desc-text .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
+
+  .pool-desc-text h2 {
+    font-size: var(--text-2xl);
+    margin: 0;
+  }
+
+  .pool-desc-text p {
+    font-size: var(--text-md);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  /* Rules & hours */
+  .pool-rules-section {
+    padding-block: var(--space-16);
+    background: var(--gp-white);
+  }
+
+  .pool-rules-heading {
+    font-size: var(--text-xl);
+    color: var(--gp-ink);
+    margin-bottom: var(--space-10);
+  }
+
+  .pool-rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .pool-info-card {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: var(--gp-cream);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gp-border-soft);
+  }
+
+  .pool-info-icon {
+    flex-shrink: 0;
+    color: var(--gp-pool);
+    margin-top: 2px;
+  }
+
+  .pool-info-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gp-muted);
+    margin: 0 0 var(--space-2);
+  }
+
+  .pool-info-value {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .pool-rules-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .pool-rules-list li {
+    font-size: var(--text-base);
+    color: var(--gp-ink);
+    line-height: var(--leading-snug);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .pool-rules-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gp-pool);
+  }
+
+  /* Full-width photo */
+  .pool-photo-section {
+    position: relative;
+  }
+
+  .pool-photo-img {
+    width: 100%;
+    aspect-ratio: 21 / 8;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pool-photo-caption {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--gp-muted);
+    padding-block: var(--space-3);
+    text-align: right;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .pool-rules-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 767px) {
+    .pool-hero { min-height: 55vh; align-items: flex-end; }
+
+    .pool-hero-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(30, 45, 61, 0.88) 0%,
+        rgba(30, 45, 61, 0.52) 55%,
+        rgba(30, 45, 61, 0.14) 100%
+      );
+    }
+
+    .pool-hero-content { max-width: 100%; padding-bottom: var(--space-12); }
+    .pool-hero-h1 { font-size: var(--text-2xl); }
+    .pool-rules-grid { grid-template-columns: 1fr; }
+    .pool-photo-img { aspect-ratio: 4 / 3; }
+  }
+</style>
