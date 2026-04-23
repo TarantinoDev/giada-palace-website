@@ -1,5 +1,6 @@
 ﻿# Raw assets — never commit photos to git
-assets/
+# /assets/ is root-anchored so it does not match src/assets/images/ (committed)
+/assets/
 src/assets/raw/
 
 # Environment variables
@@ -15,6 +16,12 @@ dist/
 
 # Vercel
 .vercel/
+
+# Astro cache
+.astro/
+
+# Claude Code local settings
+.claude/
 
 # OS files
 .DS_Store

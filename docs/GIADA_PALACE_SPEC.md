@@ -8,6 +8,7 @@
 This document is the single source of truth for the Giada Palace website. Claude Code implements from this spec. If the spec is ambiguous or contradicts itself, **stop and ask — do not improvise.**
 
 **Changelog:**
+- **v1.2.1** — PR-1 completed 2026-04-23. Astro 4.16.19 scaffold with i18n (it/en/de/fr), design tokens, Zod content schema, and Vercel SSR adapter deployed.
 - **v1.2** — Photo-sharing pattern for apartment D/F formalized. Asset directory structure detailed. Representative units confirmed: `apartment-a`, `room-4`, `room-5`. Photo mapping updated to reflect actual available assets.
 - **v1.1** — Real project data (domain, email, phone). Iubenda chosen. Content model finalized at 11 units. Pre-launch checklist + Claude Code bootstrap prompt added.
 - **v1.0** — Initial specification.
