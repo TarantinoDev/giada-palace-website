@@ -9,7 +9,17 @@ maxGuests: 2
 bedConfiguration: "1 letto matrimoniale"
 heroImage: ../../assets/images/units/room-4/hero.jpg
 gallery:
-  - ../../assets/images/units/room-4/hero.jpg
+  - ../../assets/images/units/room-4/gallery-01.jpg
+  - ../../assets/images/units/room-4/gallery-02.jpg
+  - ../../assets/images/units/room-4/gallery-03.jpg
+  - ../../assets/images/units/room-4/gallery-04.jpg
+  - ../../assets/images/units/room-4/gallery-05.jpg
+  - ../../assets/images/units/room-4/gallery-06.jpg
+  - ../../assets/images/units/room-4/gallery-07.jpg
+  - ../../assets/images/units/room-4/gallery-08.jpg
+  - ../../assets/images/units/room-4/gallery-09.jpg
+  - ../../assets/images/units/room-4/gallery-10.jpg
+  - ../../assets/images/units/room-4/gallery-11.jpg
 features:
   it:
     - "Letto matrimoniale in ferro battuto"

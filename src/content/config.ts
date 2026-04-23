@@ -17,7 +17,7 @@ const unitsCollection = defineCollection({
     size: z.number().positive().optional(),
 
     heroImage: image(),
-    gallery: z.array(image()).min(1).max(12),
+    gallery: z.array(image()).min(1).max(24),
 
     features: z.object({
       it: z.array(z.string()),

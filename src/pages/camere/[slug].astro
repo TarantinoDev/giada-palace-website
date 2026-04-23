@@ -6,7 +6,6 @@ import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import UnitGallery from '../../components/UnitGallery.astro';
 import DraftNotice from '../../components/DraftNotice.astro';
-import UnitCard from '../../components/UnitCard.astro';
 import { useTranslations } from '../../i18n/utils';
 import type { Lang } from '../../i18n/ui';
 
@@ -37,13 +36,6 @@ const waNumber  = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '393513295448';
 const waLink    = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Ciao, vorrei informazioni per ${name}`)}`;
 const phone     = import.meta.env.PUBLIC_PHONE_DISPLAY ?? '+39 351 329 5448';
 const phoneHref = import.meta.env.PUBLIC_PHONE_NUMBER ?? '+393513295448';
-
-const related = (await getCollection(
-  'units',
-  (e) => (e.data.category === 'double' || e.data.category === 'single') && e.slug !== slug,
-))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 2);
 
 const { Content } = await unit.render();
 
@@ -156,20 +148,6 @@ const ldData = {
     </div>
   </section>
 
-  {related.length > 0 && (
-    <section class="related-section" aria-labelledby="related-heading">
-      <div class="container">
-        <h2 id="related-heading" class="unit-section-heading">{t('unit.related')}</h2>
-        <ul class="related-grid" role="list">
-          {related.map((rel) => (
-            <li>
-              <UnitCard unit={rel} lang={lang} detailBaseHref="/camere" />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )}
 </BaseLayout>
 
 <style>
@@ -349,20 +327,10 @@ const ldData = {
 
   .cta-phone:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.6); color: var(--gp-white); }
 
-  .related-section { padding-block: var(--space-16); background: var(--gp-white); }
-
-  .related-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    list-style: none;
-  }
-
   @media (max-width: 767px) {
     .unit-name { font-size: var(--text-2xl); }
     .unit-cta-inner { grid-template-columns: 1fr; gap: var(--space-10); }
     .unit-cta-actions { min-width: unset; width: 100%; }
     .features-grid { grid-template-columns: 1fr; }
-    .related-grid { grid-template-columns: 1fr; }
   }
 </style>

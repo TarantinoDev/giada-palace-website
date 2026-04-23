@@ -14,67 +14,69 @@ interface Props {
 const { images, slug, unitName, lang } = Astro.props;
 const t = useTranslations(lang);
 const hasMultiple = images.length > 1;
-const anchorId = `${slug}-gallery`;
+
+const prevId = (i: number) => `${slug}-s${i === 0 ? images.length - 1 : i - 1}`;
+const nextId = (i: number) => `${slug}-s${(i + 1) % images.length}`;
+
+let dynamicCSS = '';
+if (hasMultiple) {
+  for (let i = 0; i < images.length; i++) {
+    dynamicCSS += `#${slug}-s${i}:checked ~ .car-wrap .car-slide:nth-child(${i + 1}) { display: block; }`;
+    dynamicCSS += `#${slug}-s${i}:checked ~ .car-wrap .car-prev--${i} { display: flex; }`;
+    dynamicCSS += `#${slug}-s${i}:checked ~ .car-wrap .car-next--${i} { display: flex; }`;
+    dynamicCSS += `#${slug}-s${i}:checked ~ .car-wrap .car-dot:nth-child(${i + 1}) { opacity: 1; background: var(--gp-navy); }`;
+  }
+}
 ---
 
 <div class="unit-gallery">
-  {hasMultiple ? (
+  {hasMultiple && (
     <>
-      {/* Invisible anchor so close button scrolls here, not to page top */}
-      <span id={anchorId} class="gallery-anchor" aria-hidden="true"></span>
-
-      <div class="gallery-thumbs" role="list">
-        {images.map((img, i) => (
-          <a
-            href={`#${slug}-img-${i}`}
-            class="gallery-thumb-link"
-            role="listitem"
-            aria-label={`${t('gallery.open')} ${i + 1}`}
-          >
-            <Image
-              src={img}
-              alt={`${unitName} — foto ${i + 1}`}
-              widths={[300, 600]}
-              sizes="(max-width: 767px) 45vw, 200px"
-              class="gallery-thumb-img"
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-          </a>
-        ))}
-      </div>
-
-      {images.map((img, i) => (
-        <div id={`${slug}-img-${i}`} class="lightbox" role="dialog" aria-modal="true" aria-label={`${unitName} — foto ${i + 1}`}>
-          <a href={`#${anchorId}`} class="lightbox-close" aria-label={t('gallery.close')}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </a>
-          <a href={`#${anchorId}`} class="lightbox-backdrop" aria-label={t('gallery.close')} tabindex="-1"></a>
-          <div class="lightbox-content">
-            <Image
-              src={img}
-              alt={`${unitName} — foto ${i + 1}`}
-              widths={[800, 1200, 1600]}
-              sizes="(max-width: 767px) 100vw, 90vw"
-              class="lightbox-img"
-              loading="lazy"
-            />
-          </div>
-          <a
-            href={`#${slug}-img-${i === 0 ? images.length - 1 : i - 1}`}
-            class="lightbox-prev"
-            aria-label={t('gallery.prev')}
-          >‹</a>
-          <a
-            href={`#${slug}-img-${(i + 1) % images.length}`}
-            class="lightbox-next"
-            aria-label={t('gallery.next')}
-          >›</a>
-        </div>
+      {images.map((_, i) => (
+        <input
+          type="radio"
+          name={`${slug}-gallery`}
+          id={`${slug}-s${i}`}
+          class="car-input"
+          checked={i === 0}
+          aria-hidden="true"
+        />
       ))}
+
+      <div class="car-wrap">
+        <div class="car-track">
+          {images.map((img, i) => (
+            <div class="car-slide">
+              <Image
+                src={img}
+                alt={`${unitName} — foto ${i + 1}`}
+                widths={[768, 1200, 1600]}
+                sizes="(max-width: 767px) 100vw, (max-width: 1200px) 80vw, 1000px"
+                class="car-img"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                fetchpriority={i === 0 ? 'high' : undefined}
+              />
+            </div>
+          ))}
+        </div>
+
+        {images.map((_, i) => (
+          <>
+            <label class={`car-arrow car-prev car-prev--${i}`} for={prevId(i)} aria-label={t('gallery.prev')}>‹</label>
+            <label class={`car-arrow car-next car-next--${i}`} for={nextId(i)} aria-label={t('gallery.next')}>›</label>
+          </>
+        ))}
+
+        <div class="car-dots">
+          {images.map((_, i) => (
+            <label class="car-dot" for={`${slug}-s${i}`} aria-label={String(i + 1)}></label>
+          ))}
+        </div>
+      </div>
     </>
-  ) : (
+  )}
+
+  {!hasMultiple && (
     <div class="gallery-single">
       <Image
         src={images[0]}
@@ -89,16 +91,12 @@ const anchorId = `${slug}-gallery`;
   )}
 </div>
 
-<style>
-  .unit-gallery {
-    position: relative;
-  }
+{hasMultiple && <Fragment set:html={`<style>${dynamicCSS}</style>`} />}
 
-  .gallery-anchor {
-    display: block;
-    height: 0;
-    overflow: hidden;
-  }
+<style>
+  .unit-gallery { position: relative; }
+
+  .car-input { display: none; }
 
   /* Single image */
   .gallery-single {
@@ -113,139 +111,91 @@ const anchorId = `${slug}-gallery`;
     object-fit: cover;
   }
 
-  /* Thumbnail strip */
-  .gallery-thumbs {
-    display: flex;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-  }
-
-  .gallery-thumb-link {
-    display: block;
-    width: 200px;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius-md);
-    border: 2px solid transparent;
-    transition: border-color 0.15s ease;
-    flex-shrink: 0;
-  }
-
-  .gallery-thumb-link:first-child {
-    width: 100%;
+  /* Carousel wrapper */
+  .car-wrap {
+    position: relative;
     aspect-ratio: 16 / 9;
+    background: var(--gp-cream);
     border-radius: var(--radius-lg);
   }
 
-  .gallery-thumb-link:hover {
-    border-color: var(--gp-coral);
+  /* Track clips images to rounded corners */
+  .car-track {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
   }
 
-  .gallery-thumb-img {
+  .car-slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+
+  .car-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    display: block;
   }
 
-  .gallery-thumb-link:hover .gallery-thumb-img {
-    transform: scale(1.04);
-  }
-
-  /* Lightbox */
-  .lightbox {
+  /* Arrows — hidden by default, shown via dynamic CSS */
+  .car-arrow {
     display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 300;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .lightbox:target {
-    display: flex;
-  }
-
-  .lightbox-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(15, 20, 30, 0.93);
-  }
-
-  .lightbox-content {
-    position: relative;
-    z-index: 1;
-    max-width: min(92vw, 1100px);
-    max-height: 90vh;
-    display: flex;
-  }
-
-  .lightbox-img {
-    max-width: 100%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: var(--radius-md);
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--gp-white);
-    border-radius: 50%;
-    transition: background 0.15s ease;
-    text-decoration: none;
-  }
-
-  .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.25);
-  }
-
-  .lightbox-prev,
-  .lightbox-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: rgba(255, 255, 255, 0.12);
-    color: var(--gp-white);
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--gp-navy);
     border-radius: 50%;
-    font-size: 28px;
+    font-size: 24px;
     line-height: 1;
-    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
     transition: background 0.15s ease;
   }
 
-  .lightbox-prev { left: var(--space-4); }
-  .lightbox-next { right: var(--space-4); }
+  .car-arrow:hover { background: var(--gp-white); }
 
-  .lightbox-prev:hover,
-  .lightbox-next:hover {
-    background: rgba(255, 255, 255, 0.25);
+  .car-prev { left: var(--space-3); }
+  .car-next { right: var(--space-3); }
+
+  /* Dots */
+  .car-dots {
+    position: absolute;
+    bottom: var(--space-3);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+    max-width: 90%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
+  .car-dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0.6;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s ease, opacity 0.15s ease;
+  }
+
+  .car-dot:hover { opacity: 0.9; }
+
   @media (max-width: 767px) {
-    .gallery-thumb-link {
-      width: calc(50% - var(--space-1));
-    }
-
-    .gallery-thumb-link:first-child {
-      width: 100%;
-    }
-
-    .lightbox-prev { left: var(--space-2); }
-    .lightbox-next { right: var(--space-2); }
+    .car-wrap { aspect-ratio: 4 / 3; }
+    .car-arrow { width: 36px; height: 36px; font-size: 20px; }
   }
 </style>
