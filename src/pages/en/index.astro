@@ -1,14 +1,12 @@
 ---
 export const prerender = true;
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Giada Palace</title>
-  </head>
-  <body>
-    <h1>Giada Palace</h1>
-  </body>
-</html>
+
+<BaseLayout
+  title="Apartments & rooms near Lucca with pool | Giada Palace"
+  description="Apartments and rooms steps from Lucca with outdoor pool, free parking and Wi-Fi. Perfect for family holidays and business stays."
+  alternates={{ it: '/', en: '/en/' }}
+>
+  <h1>Giada Palace</h1>
+</BaseLayout>

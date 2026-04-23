@@ -1,0 +1,59 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/cormorant-garamond';
+import '../styles/reset.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  /** Per-locale href overrides for hreflang (pass when page slugs differ between locales). */
+  alternates?: Partial<Record<Lang, string>>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex = false,
+  alternates,
+} = Astro.props;
+
+const lang        = (Astro.currentLocale ?? 'it') as Lang;
+const canonicalUrl = canonical ?? Astro.url.href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonicalUrl}
+      lang={lang}
+      currentPath={Astro.url.pathname}
+      ogImage={ogImage}
+      noindex={noindex}
+      alternates={alternates}
+    />
+  </head>
+  <body>
+    <Header lang={lang} currentPath={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

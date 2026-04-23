@@ -1,0 +1,181 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const email     = import.meta.env.PUBLIC_CONTACT_EMAIL  ?? 'giadapalacerooms@gmail.com';
+const phone     = import.meta.env.PUBLIC_PHONE_DISPLAY  ?? '+39 351 329 5448';
+const phoneHref = import.meta.env.PUBLIC_PHONE_NUMBER   ?? '+393513295448';
+
+const year      = new Date().getFullYear();
+const copyright = t('footer.copyright').replace('{year}', String(year));
+
+const homeHref    = lang === 'it' ? '/'              : `/${lang}/`;
+const privacyHref = lang === 'it' ? '/privacy'       : `/${lang}/privacy`;
+const cookieHref  = lang === 'it' ? '/cookie-policy' : `/${lang}/cookie-policy`;
+
+/* Business data — populated via Vercel env vars when Gennaro provides them */
+const ragioneSociale = import.meta.env.PUBLIC_RAGIONE_SOCIALE as string | undefined;
+const piva           = import.meta.env.PUBLIC_PIVA            as string | undefined;
+---
+
+<footer class="site-footer">
+  <div class="footer-grid container">
+
+    <div class="footer-brand">
+      <a href={homeHref} class="footer-logo">Giada Palace</a>
+      <p class="footer-tagline">{t('footer.tagline')}</p>
+    </div>
+
+    <div class="footer-links">
+      <h3 class="footer-heading">{t('footer.nav.heading')}</h3>
+      <ul>
+        <li><a href={privacyHref}>{t('footer.privacy')}</a></li>
+        <li><a href={cookieHref}>{t('footer.cookie')}</a></li>
+        <li>
+          <button
+            class="footer-prefs-btn"
+            onclick="if(window._iub)_iub.cs.api.openPreferences()"
+          >
+            {t('footer.preferences')}
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3 class="footer-heading">{t('footer.contact.heading')}</h3>
+      <address>
+        <a href={`mailto:${email}`}>{email}</a>
+        <a href={`tel:${phoneHref}`}>{phone}</a>
+      </address>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom container">
+    {ragioneSociale && piva && (
+      <p class="footer-legal">{ragioneSociale} — P.IVA {piva}</p>
+    )}
+    <p class="footer-copyright">{copyright}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--gp-navy);
+    color: var(--gp-white);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-8);
+    margin-top: auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer-logo {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-regular);
+    color: var(--gp-white);
+    text-decoration: none;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
+  }
+
+  .footer-tagline {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: var(--leading-snug);
+    max-width: 28ch;
+  }
+
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-4);
+    /* Override global h3 serif */
+    font-family: var(--font-sans);
+  }
+
+  .footer-links ul,
+  .footer-contact address {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: 0;
+    font-style: normal;
+  }
+
+  .footer-links a,
+  .footer-contact a {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-contact a:hover {
+    color: var(--gp-white);
+  }
+
+  .footer-prefs-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.15s ease;
+  }
+
+  .footer-prefs-btn:hover {
+    color: var(--gp-white);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-top: var(--space-6);
+  }
+
+  .footer-legal,
+  .footer-copyright {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,227 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const t = useTranslations(lang);
+
+type NavLink = { label: string; href: string };
+
+const navLinks: Record<Lang, NavLink[]> = {
+  it: [
+    { label: t('nav.units'),   href: '/appartamenti' },
+    { label: t('nav.pool'),    href: '/la-piscina' },
+    { label: t('nav.lucca'),   href: '/lucca' },
+    { label: t('nav.contact'), href: '/contatti' },
+  ],
+  en: [
+    { label: t('nav.units'),   href: '/en/apartments' },
+    { label: t('nav.pool'),    href: '/en/pool' },
+    { label: t('nav.lucca'),   href: '/en/lucca' },
+    { label: t('nav.contact'), href: '/en/contact' },
+  ],
+  de: [
+    { label: t('nav.units'),   href: '/de/appartamenti' },
+    { label: t('nav.pool'),    href: '/de/la-piscina' },
+    { label: t('nav.lucca'),   href: '/de/lucca' },
+    { label: t('nav.contact'), href: '/de/contatti' },
+  ],
+  fr: [
+    { label: t('nav.units'),   href: '/fr/appartamenti' },
+    { label: t('nav.pool'),    href: '/fr/la-piscina' },
+    { label: t('nav.lucca'),   href: '/fr/lucca' },
+    { label: t('nav.contact'), href: '/fr/contatti' },
+  ],
+};
+
+const links = navLinks[lang];
+const homeHref = lang === 'it' ? '/' : `/${lang}/`;
+
+function isActive(href: string): boolean {
+  if (href === '/' || href === `/${lang}/`) return currentPath === href;
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<header class="site-header">
+  <div class="header-inner container">
+
+    <a href={homeHref} class="header-logo" aria-label={t('header.logo.label')}>
+      Giada Palace
+    </a>
+
+    <!-- CSS-only mobile toggle: checkbox must precede nav and label as siblings -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-hidden="true" />
+
+    <nav class="header-nav" aria-label={t('nav.label')}>
+      <ul>
+        {links.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={isActive(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <LanguageSwitcher lang={lang} currentPath={currentPath} />
+    </nav>
+
+    <label for="menu-toggle" class="hamburger" aria-label={t('header.menu.open')}>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background-color: var(--gp-white);
+    border-bottom: 1px solid var(--gp-border-soft);
+  }
+
+  .header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .header-logo {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-regular);
+    color: var(--gp-navy);
+    text-decoration: none;
+    flex-shrink: 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* Hide the checkbox itself */
+  .menu-toggle {
+    display: none;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    margin-left: auto;
+  }
+
+  .header-nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    padding: 0;
+  }
+
+  .header-nav a {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--gp-ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    padding-block: var(--space-2);
+    border-bottom: 1.5px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .header-nav a:hover {
+    color: var(--gp-coral);
+  }
+
+  .header-nav a[aria-current='page'] {
+    color: var(--gp-coral);
+    border-bottom-color: var(--gp-coral);
+  }
+
+  /* Hamburger button — hidden on desktop */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: var(--space-2);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .hamburger .bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background-color: var(--gp-ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .hamburger {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .header-nav {
+      display: none;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: var(--gp-white);
+      border-bottom: 1px solid var(--gp-border-soft);
+      padding: var(--space-6);
+      gap: var(--space-6);
+      z-index: 99;
+    }
+
+    /* Show nav when checkbox is checked */
+    .menu-toggle:checked ~ .header-nav {
+      display: flex;
+    }
+
+    .header-nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+      width: 100%;
+    }
+
+    .header-nav a {
+      font-size: var(--text-md);
+    }
+
+    /* Animate hamburger → X */
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-toggle:checked ~ .hamburger .bar:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+  }
+</style>
