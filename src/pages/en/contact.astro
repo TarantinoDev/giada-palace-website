@@ -18,8 +18,8 @@ const unitParam   = params.get('unit')   ?? '';
 
 const hasParams = Boolean(fromParam || toParam || guestsParam);
 
-// Build unit list (EN names)
-const allUnits = (await getCollection('units')).sort((a, b) => a.data.order - b.data.order);
+// Build unit list (non-draft units only, EN names)
+const allUnits = (await getCollection('units', (e) => !e.data.isDraft)).sort((a, b) => a.data.order - b.data.order);
 const unitOptions = allUnits.map((u) => ({
   slug: u.slug,
   name: u.data.name.en,

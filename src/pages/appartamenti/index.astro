@@ -9,7 +9,7 @@ import type { Lang } from '../../i18n/ui';
 const lang = 'it' as Lang;
 const t    = useTranslations(lang);
 
-const units = (await getCollection('units', (e) => e.data.category === 'apartment'))
+const units = (await getCollection('units', (e) => e.data.category === 'apartment' && !e.data.isDraft))
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
@@ -36,6 +36,9 @@ const units = (await getCollection('units', (e) => e.data.category === 'apartmen
           </li>
         ))}
       </ul>
+      <p class="listing-note">
+        <a href="/contatti">{t('listing.apartments.note')}</a>
+      </p>
     </div>
   </section>
 </BaseLayout>
@@ -93,5 +96,17 @@ const units = (await getCollection('units', (e) => e.data.category === 'apartmen
     .listing-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .listing-note {
+    margin-top: var(--space-10);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+  }
+
+  .listing-note a {
+    color: var(--gp-navy);
+    text-underline-offset: 2px;
   }
 </style>

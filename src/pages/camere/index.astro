@@ -9,13 +9,18 @@ import type { Lang } from '../../i18n/ui';
 const lang = 'it' as Lang;
 const t    = useTranslations(lang);
 
-const units = (await getCollection('units', (e) => e.data.category === 'double' || e.data.category === 'single'))
+const doubles = (await getCollection('units', (e) => e.data.category === 'double' && !e.data.isDraft))
   .sort((a, b) => a.data.order - b.data.order);
+
+const singles = (await getCollection('units', (e) => e.data.category === 'single' && !e.data.isDraft))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const totalCount = doubles.length + singles.length;
 ---
 
 <BaseLayout
   title="Camere doppie e singole a Lucca | Giada Palace"
-  description="6 camere con bagno privato, aria condizionata, Wi-Fi e parcheggio inclusi. Accesso alla piscina estiva. Vicino a Lucca."
+  description="Camere con bagno privato, aria condizionata, Wi-Fi e parcheggio inclusi. Accesso alla piscina estiva. Vicino a Lucca."
   alternates={{ en: '/en/rooms' }}
 >
   <section class="listing-hero">
@@ -23,21 +28,39 @@ const units = (await getCollection('units', (e) => e.data.category === 'double' 
       <span class="eyebrow">{t('listing.rooms.eyebrow')}</span>
       <h1>{t('listing.rooms.h1')}</h1>
       <p class="listing-hero-subtitle">{t('listing.rooms.subtitle')}</p>
-      <p class="listing-count">{units.length} {t('listing.rooms.unit_label')}</p>
+      <p class="listing-count">{totalCount} {t('listing.rooms.unit_label')}</p>
     </div>
   </section>
 
-  <section class="listing-grid-section" aria-label={t('listing.rooms.h1')}>
-    <div class="container">
-      <ul class="listing-grid" role="list">
-        {units.map((unit) => (
-          <li>
-            <UnitCard unit={unit} lang={lang} detailBaseHref="/camere" />
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
+  {doubles.length > 0 && (
+    <section class="listing-section" aria-labelledby="doubles-heading">
+      <div class="container">
+        <h2 id="doubles-heading" class="listing-section-heading">{t('listing.rooms.doubles')}</h2>
+        <ul class="listing-grid" role="list">
+          {doubles.map((unit) => (
+            <li>
+              <UnitCard unit={unit} lang={lang} detailBaseHref="/camere" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {singles.length > 0 && (
+    <section class="listing-section listing-section--alt" aria-labelledby="singles-heading">
+      <div class="container">
+        <h2 id="singles-heading" class="listing-section-heading">{t('listing.rooms.singles')}</h2>
+        <ul class="listing-grid" role="list">
+          {singles.map((unit) => (
+            <li>
+              <UnitCard unit={unit} lang={lang} detailBaseHref="/camere" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
 <style>
@@ -72,9 +95,19 @@ const units = (await getCollection('units', (e) => e.data.category === 'double' 
     margin: 0;
   }
 
-  .listing-grid-section {
+  .listing-section {
     padding-block: var(--space-16);
     background: var(--gp-white);
+  }
+
+  .listing-section--alt {
+    background: var(--gp-cream);
+  }
+
+  .listing-section-heading {
+    font-size: var(--text-xl);
+    color: var(--gp-ink);
+    margin-bottom: var(--space-8);
   }
 
   .listing-grid {

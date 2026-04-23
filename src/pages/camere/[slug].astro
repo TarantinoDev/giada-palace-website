@@ -88,7 +88,7 @@ const ldData = {
   <div class="unit-header container">
     <div class="unit-header-inner">
       <div class="unit-meta-row">
-        <span class="unit-meta-guests">{data.maxGuests} {t('unit.guests_label')}</span>
+        <span class="unit-meta-guests">{data.maxGuests} {data.maxGuests === 1 ? t('unit.guest_singular') : t('unit.guests_label')}</span>
         <span class="unit-meta-dot" aria-hidden="true">·</span>
         <span class="unit-meta-beds">{data.bedConfiguration}</span>
         {data.availableOnRequest && (
@@ -139,7 +139,6 @@ const ldData = {
   <section class="unit-cta-section" aria-label={t('unit.cta_availability')}>
     <div class="container unit-cta-inner">
       <div class="unit-cta-text">
-        <h2 class="unit-cta-heading">{name}</h2>
         <p class="unit-cta-sub">{data.shortDescription.it}</p>
       </div>
       <div class="unit-cta-actions">
