@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import aptImg    from '../assets/images/units/apartment-a/hero.jpg';
+import doubleImg from '../assets/images/units/room-4/hero.jpg';
+import singleImg from '../assets/images/units/room-5/hero.jpg';
+
+const cards = [
+  {
+    img: aptImg,
+    alt: 'Camera da letto con letto in ferro battuto in un appartamento Giada Palace',
+    tag: 'Appartamenti',
+    title: 'Appartamenti',
+    desc: 'Con cucina, zona giorno, terrazzo. Per famiglie e soggiorni lunghi.',
+    href: '/appartamenti',
+    cta: 'Vedi appartamenti',
+  },
+  {
+    img: doubleImg,
+    alt: 'Camera doppia con letto matrimoniale e arredamento classico',
+    tag: 'Camere doppie',
+    title: 'Camere doppie',
+    desc: 'Ferro battuto, letto matrimoniale, climatizzazione, bagno privato.',
+    href: '/camere',
+    cta: 'Vedi le camere',
+  },
+  {
+    img: singleImg,
+    alt: 'Camera singola ordinata con scrivania e luce naturale',
+    tag: 'Camera singola',
+    title: 'Camera singola',
+    desc: 'Compatte e ordinate, pensate per chi viaggia solo per lavoro.',
+    href: '/camere',
+    cta: 'Vedi le camere',
+  },
+] as const;
+---
+
+<section class="units-section">
+  <div class="container">
+    <div class="units-header">
+      <span class="eyebrow">— Scegli il tuo spazio —</span>
+      <h2>Tre modi di abitare Giada</h2>
+    </div>
+    <ul class="units-grid" role="list">
+      {cards.map(({ img, alt, tag, title, desc, href, cta }) => (
+        <li class="unit-card">
+          <div class="unit-card-img-wrap">
+            <Image
+              src={img}
+              alt={alt}
+              widths={[400, 600, 800]}
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+              class="unit-card-img"
+              loading="lazy"
+            />
+          </div>
+          <div class="unit-card-body">
+            <span class="unit-card-tag">{tag}</span>
+            <h3 class="unit-card-title">{title}</h3>
+            <p class="unit-card-desc">{desc}</p>
+            <a href={href} class="btn btn-ghost unit-card-cta">
+              {cta} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .units-section {
+    padding-block: var(--space-20);
+    background-color: var(--gp-cream);
+  }
+
+  .units-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .units-header .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .units-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .unit-card {
+    background: var(--gp-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--gp-border-soft);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .unit-card:hover {
+    box-shadow: 0 8px 32px rgba(30, 45, 61, 0.1);
+  }
+
+  .unit-card-img-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .unit-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .unit-card:hover .unit-card-img {
+    transform: scale(1.03);
+  }
+
+  .unit-card-body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .unit-card-tag {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gp-coral);
+  }
+
+  .unit-card-title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--gp-ink);
+  }
+
+  .unit-card-desc {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    flex: 1;
+  }
+
+  .unit-card-cta {
+    align-self: flex-start;
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 1023px) {
+    .units-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .units-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
