@@ -1,0 +1,393 @@
+---
+export const prerender = true;
+import { getCollection, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UnitGallery from '../../components/UnitGallery.astro';
+import DraftNotice from '../../components/DraftNotice.astro';
+import UnitCard from '../../components/UnitCard.astro';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const units = await getCollection('units', (e) => e.data.category === 'apartment');
+  return units.map((unit) => ({ params: { slug: unit.slug }, props: { unit } }));
+}
+
+export interface Props { unit: CollectionEntry<'units'>; }
+
+const { unit }       = Astro.props;
+const { slug, data } = unit;
+const lang = 'it' as Lang;
+const t    = useTranslations(lang);
+
+const name    = data.name.it;
+const seo     = data.seo.it;
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL ?? 'https://giadapalace.it').replace(/\/$/, '');
+
+const canonical     = `${siteUrl}/appartamenti/${slug}`;
+const ogImageResult = await getImage({ src: data.heroImage, width: 1200, height: 630, format: 'jpeg' });
+const ogImageUrl    = `${siteUrl}${ogImageResult.src}`;
+
+const waNumber  = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '393513295448';
+const waLink    = `https://wa.me/${waNumber}?text=${encodeURIComponent(`Ciao, vorrei informazioni per ${name}`)}`;
+const phone     = import.meta.env.PUBLIC_PHONE_DISPLAY ?? '+39 351 329 5448';
+const phoneHref = import.meta.env.PUBLIC_PHONE_NUMBER ?? '+393513295448';
+
+const twinEntry = data.sharesPhotosWith ? await getEntry('units', data.sharesPhotosWith) : null;
+const twinName  = twinEntry?.data.name.it ?? null;
+const twinHref  = twinEntry ? `/appartamenti/${twinEntry.slug}` : null;
+
+const related = (await getCollection('units', (e) => e.data.category === 'apartment' && e.slug !== slug))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 2);
+
+const { Content } = await unit.render();
+
+const ldData = {
+  '@context': 'https://schema.org',
+  '@type': 'Accommodation',
+  name,
+  description: seo.description,
+  url: canonical,
+  image: ogImageUrl,
+  occupancy: { '@type': 'QuantitativeValue', maxValue: data.maxGuests },
+  containedInPlace: { '@type': 'LodgingBusiness', name: 'Giada Palace', url: siteUrl },
+};
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonical={canonical}
+  ogImage={ogImageUrl}
+  noindex={data.isDraft}
+  alternates={{ en: `/en/apartments/${slug}` }}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(ldData)} />
+  </Fragment>
+
+  <nav class="breadcrumb" aria-label={t('breadcrumb.label')}>
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">{t('breadcrumb.home')}</a></li>
+        <li><a href="/appartamenti">{t('breadcrumb.apartments')}</a></li>
+        <li aria-current="page">{name}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="unit-gallery-wrap container">
+    <UnitGallery images={data.gallery} slug={slug} unitName={name} lang={lang} />
+    {twinName && twinHref && (
+      <p class="twin-note">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7C2 4.24 4.24 2 7 2C9.76 2 12 4.24 12 7C12 9.76 9.76 12 7 12C4.24 12 2 9.76 2 7Z" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M7 5v3M7 9.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        {t('unit.twin_note')} <a href={twinHref}>{twinName}</a>
+      </p>
+    )}
+  </div>
+
+  <div class="unit-header container">
+    <div class="unit-header-inner">
+      <div class="unit-meta-row">
+        <span class="unit-meta-guests">{data.maxGuests} {t('unit.guests_label')}</span>
+        <span class="unit-meta-dot" aria-hidden="true">·</span>
+        <span class="unit-meta-beds">{data.bedConfiguration}</span>
+        {data.availableOnRequest && (
+          <>
+            <span class="unit-meta-dot" aria-hidden="true">·</span>
+            <span class="unit-meta-avail">{t('unit.available_on_request')}</span>
+          </>
+        )}
+      </div>
+      <h1 class="unit-name">{name}</h1>
+      <p class="unit-short-desc">{data.shortDescription.it}</p>
+    </div>
+  </div>
+
+  {!data.isDraft && (
+    <div class="unit-body container">
+      <div class="unit-body-prose">
+        <Content />
+      </div>
+    </div>
+  )}
+
+  {data.isDraft && (
+    <div class="unit-draft-notice container">
+      <DraftNotice category={data.category} lang={lang} />
+    </div>
+  )}
+
+  <section class="unit-features-section" aria-labelledby="features-heading">
+    <div class="container">
+      <h2 id="features-heading" class="unit-section-heading">{t('unit.features')}</h2>
+      <ul class="features-grid" role="list">
+        {data.features.it.map((feature) => (
+          <li class="feature-item">
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2.5 8.5L6 12L13.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      {data.seasonalNote && (
+        <p class="seasonal-note">{data.seasonalNote}</p>
+      )}
+    </div>
+  </section>
+
+  <section class="unit-cta-section" aria-label={t('unit.cta_availability')}>
+    <div class="container unit-cta-inner">
+      <div class="unit-cta-text">
+        <h2 class="unit-cta-heading">{name}</h2>
+        <p class="unit-cta-sub">{data.shortDescription.it}</p>
+      </div>
+      <div class="unit-cta-actions">
+        <a href={`/contatti?unit=${slug}`} class="btn btn-primary">
+          {t('unit.cta_availability')} →
+        </a>
+        <a href={waLink} class="btn cta-wa" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          {t('unit.cta_whatsapp')}
+        </a>
+        <a href={`tel:${phoneHref}`} class="btn btn-ghost cta-phone">{phone}</a>
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="related-section" aria-labelledby="related-heading">
+      <div class="container">
+        <h2 id="related-heading" class="unit-section-heading">{t('unit.related')}</h2>
+        <ul class="related-grid" role="list">
+          {related.map((rel) => (
+            <li>
+              <UnitCard unit={rel} lang={lang} detailBaseHref="/appartamenti" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    background: var(--gp-cream);
+    border-bottom: 1px solid var(--gp-border-soft);
+    padding-block: var(--space-3);
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+  }
+
+  .breadcrumb-list li + li::before {
+    content: '/';
+    margin-right: var(--space-2);
+    opacity: 0.4;
+  }
+
+  .breadcrumb-list a { color: var(--gp-muted); text-decoration: none; }
+  .breadcrumb-list a:hover { color: var(--gp-navy); }
+  .breadcrumb-list [aria-current="page"] { color: var(--gp-ink); }
+
+  .unit-gallery-wrap {
+    padding-block: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .twin-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .twin-note a { color: var(--gp-navy); text-decoration: underline; text-underline-offset: 2px; }
+  .twin-note a:hover { color: var(--gp-coral); }
+
+  .unit-header { padding-block: var(--space-6) var(--space-10); }
+
+  .unit-header-inner {
+    max-width: var(--max-width-reading);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .unit-meta-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .unit-meta-guests,
+  .unit-meta-beds,
+  .unit-meta-avail {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+  }
+
+  .unit-meta-guests {
+    font-weight: var(--weight-medium);
+    color: var(--gp-coral);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .unit-meta-dot { color: var(--gp-border); font-size: var(--text-md); }
+
+  .unit-name {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .unit-short-desc {
+    font-size: var(--text-md);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .unit-body { padding-bottom: var(--space-10); }
+
+  .unit-body-prose {
+    max-width: var(--max-width-reading);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-ink);
+  }
+
+  .unit-body-prose :global(p) { margin-bottom: var(--space-4); }
+  .unit-body-prose :global(p:last-child) { margin-bottom: 0; }
+
+  .unit-draft-notice {
+    padding-bottom: var(--space-10);
+    max-width: calc(var(--max-width-reading) + var(--space-12));
+  }
+
+  .unit-features-section {
+    padding-block: var(--space-12);
+    background: var(--gp-cream);
+  }
+
+  .unit-section-heading {
+    font-size: var(--text-xl);
+    color: var(--gp-ink);
+    margin-bottom: var(--space-8);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3) var(--space-8);
+    list-style: none;
+    margin-bottom: var(--space-6);
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-base);
+    color: var(--gp-ink);
+    line-height: var(--leading-snug);
+  }
+
+  .feature-check { flex-shrink: 0; color: var(--gp-olive); margin-top: 2px; }
+
+  .seasonal-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+    margin: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--gp-border-soft);
+  }
+
+  .unit-cta-section {
+    padding-block: var(--space-16);
+    background: var(--gp-navy);
+  }
+
+  .unit-cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .unit-cta-text { display: flex; flex-direction: column; gap: var(--space-3); }
+
+  .unit-cta-heading { font-size: var(--text-2xl); color: var(--gp-white); margin: 0; }
+
+  .unit-cta-sub {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: var(--leading-normal);
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  .unit-cta-actions { display: flex; flex-direction: column; gap: var(--space-3); min-width: 220px; }
+  .unit-cta-actions .btn { justify-content: center; }
+
+  .cta-wa {
+    background-color: #25D366;
+    color: var(--gp-white);
+    border-color: #25D366;
+    gap: var(--space-2);
+  }
+
+  .cta-wa:hover { background-color: #1ebe5c; border-color: #1ebe5c; color: var(--gp-white); }
+
+  .cta-phone {
+    background: transparent;
+    color: var(--gp-white);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cta-phone:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.6); color: var(--gp-white); }
+
+  .related-section { padding-block: var(--space-16); background: var(--gp-white); }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    list-style: none;
+  }
+
+  @media (max-width: 767px) {
+    .unit-name { font-size: var(--text-2xl); }
+    .unit-cta-inner { grid-template-columns: 1fr; gap: var(--space-10); }
+    .unit-cta-actions { min-width: unset; width: 100%; }
+    .features-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+  }
+</style>

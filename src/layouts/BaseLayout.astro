@@ -48,6 +48,7 @@ const canonicalUrl = canonical ?? Astro.url.href;
       noindex={noindex}
       alternates={alternates}
     />
+    <slot name="head" />
   </head>
   <body>
     <Header lang={lang} currentPath={Astro.url.pathname} />

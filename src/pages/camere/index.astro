@@ -1,0 +1,97 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UnitCard from '../../components/UnitCard.astro';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+const lang = 'it' as Lang;
+const t    = useTranslations(lang);
+
+const units = (await getCollection('units', (e) => e.data.category === 'double' || e.data.category === 'single'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Camere doppie e singole a Lucca | Giada Palace"
+  description="6 camere con bagno privato, aria condizionata, Wi-Fi e parcheggio inclusi. Accesso alla piscina estiva. Vicino a Lucca."
+  alternates={{ en: '/en/rooms' }}
+>
+  <section class="listing-hero">
+    <div class="container listing-hero-inner">
+      <span class="eyebrow">{t('listing.rooms.eyebrow')}</span>
+      <h1>{t('listing.rooms.h1')}</h1>
+      <p class="listing-hero-subtitle">{t('listing.rooms.subtitle')}</p>
+      <p class="listing-count">{units.length} {t('listing.rooms.unit_label')}</p>
+    </div>
+  </section>
+
+  <section class="listing-grid-section" aria-label={t('listing.rooms.h1')}>
+    <div class="container">
+      <ul class="listing-grid" role="list">
+        {units.map((unit) => (
+          <li>
+            <UnitCard unit={unit} lang={lang} detailBaseHref="/camere" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .listing-hero {
+    background-color: var(--gp-cream);
+    padding-block: var(--space-16) var(--space-12);
+    border-bottom: 1px solid var(--gp-border-soft);
+  }
+
+  .listing-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .listing-hero-inner .eyebrow {
+    margin-bottom: calc(var(--space-2) * -1);
+  }
+
+  .listing-hero-subtitle {
+    font-size: var(--text-md);
+    color: var(--gp-muted);
+    line-height: var(--leading-normal);
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .listing-count {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .listing-grid-section {
+    padding-block: var(--space-16);
+    background: var(--gp-white);
+  }
+
+  .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 1023px) {
+    .listing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 599px) {
+    .listing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
