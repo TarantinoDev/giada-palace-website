@@ -3,7 +3,6 @@ import { defineCollection, z } from 'astro:content';
 const unitsCollection = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
-    slug: z.string(),
     name: z.object({
       it: z.string(),
       en: z.string(),

@@ -1,0 +1,97 @@
+---
+import { getEntry } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  category: 'apartment' | 'double' | 'single';
+  lang: Lang;
+}
+
+const { category, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const repSlug     = category === 'apartment' ? 'apartment-a' : category === 'double' ? 'room-4' : 'room-5';
+const repEntry    = await getEntry('units', repSlug);
+const repName     = repEntry ? (repEntry.data.name[lang] ?? repEntry.data.name.it) : repSlug;
+const repBasePath = category === 'apartment' ? '/appartamenti' : '/camere';
+const repHref     = `${repBasePath}/${repSlug}`;
+---
+
+<aside class="draft-notice" aria-label={t('unit.draft.headline')}>
+  <div class="draft-notice-icon" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M10 6v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="14" r="0.75" fill="currentColor"/>
+    </svg>
+  </div>
+  <div class="draft-notice-body">
+    <p class="draft-notice-headline">{t('unit.draft.headline')}</p>
+    <p class="draft-notice-text">
+      {t('unit.draft.body_intro')}
+      {' '}
+      {t('unit.draft.body_visit')}
+      {' '}
+      <a href={repHref}>{repName}</a>
+      {t('unit.draft.body_after')}
+    </p>
+    <a href="/contatti" class="btn btn-ghost draft-notice-cta">
+      {t('unit.draft.cta')} →
+    </a>
+  </div>
+</aside>
+
+<style>
+  .draft-notice {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: var(--gp-cream);
+    border: 1px solid var(--gp-border);
+    border-left: 3px solid var(--gp-coral);
+    border-radius: var(--radius-md);
+  }
+
+  .draft-notice-icon {
+    flex-shrink: 0;
+    color: var(--gp-coral);
+    margin-top: 2px;
+  }
+
+  .draft-notice-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .draft-notice-headline {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .draft-notice-text {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .draft-notice-text a {
+    color: var(--gp-navy);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .draft-notice-text a:hover {
+    color: var(--gp-coral);
+  }
+
+  .draft-notice-cta {
+    align-self: flex-start;
+    font-size: var(--text-sm);
+  }
+</style>
