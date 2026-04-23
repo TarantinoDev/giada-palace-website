@@ -48,6 +48,26 @@ const canonicalUrl = canonical ?? Astro.url.href;
       noindex={noindex}
       alternates={alternates}
     />
+    <!-- TODO PR-9 (full): Iubenda Cookie Solution
+         Uncomment after Gennaro adds PUBLIC_IUBENDA_POLICY_ID and
+         PUBLIC_IUBENDA_COOKIE_POLICY_ID to the Vercel dashboard (spec §8.1).
+         Replace SITE_ID with the numeric siteId from the Iubenda dashboard.
+
+    <script>
+      var _iub = _iub || [];
+      _iub.csConfiguration = {
+        "askConsentAtCookiePolicyUpdate": true,
+        "floatingPreferencesButtonDisplay": false,
+        "perPurposeConsent": true,
+        "siteId": SITE_ID,
+        "cookiePolicyId": import.meta.env.PUBLIC_IUBENDA_COOKIE_POLICY_ID,
+        "lang": "{lang}",
+        "storage": { "useSiteId": true }
+      };
+    </script>
+    <script src={`https://cs.iubenda.com/autoblocking/${SITE_ID}.js`}></script>
+    <script src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+    -->
     <slot name="head" />
   </head>
   <body>

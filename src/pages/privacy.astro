@@ -1,0 +1,84 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL ?? 'giadapalacerooms@gmail.com';
+---
+
+<BaseLayout
+  title="Privacy Policy | Giada Palace"
+  description="Informativa sulla privacy di Giada Palace — documento in preparazione."
+  alternates={{ en: '/en/privacy' }}
+>
+  <!-- TODO PR-9 (full): replace this section with the Iubenda privacy policy
+       iframe embed once PUBLIC_IUBENDA_POLICY_ID is set in Vercel.
+       Pattern:
+         <div id="iubenda-pp">
+           <a href={`https://www.iubenda.com/privacy-policy/${policyId}`}
+              class="iubenda-white iubenda-noiframe iubenda-embed"
+              title="Privacy Policy">Privacy Policy</a>
+           <script src="https://cdn.iubenda.com/iubenda.js"></script>
+         </div>
+  -->
+  <section class="legal-section">
+    <div class="container legal-inner">
+      <span class="eyebrow">— Privacy Policy —</span>
+      <h1 class="legal-h1">Privacy Policy</h1>
+      <div class="legal-placeholder">
+        <p>
+          Il documento di Privacy Policy è in preparazione e sarà pubblicato a breve.
+        </p>
+        <p>
+          Per qualsiasi domanda relativa al trattamento dei dati personali,
+          contattaci a{' '}
+          <a href={`mailto:${email}`}>{email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-section {
+    padding-block: var(--space-20);
+    background: var(--gp-cream);
+    min-height: 60vh;
+  }
+
+  .legal-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: var(--max-width-reading);
+  }
+
+  .legal-h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-regular);
+    color: var(--gp-ink);
+    margin: 0;
+  }
+
+  .legal-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    background: var(--gp-white);
+    border: 1px solid var(--gp-border-soft);
+    border-radius: var(--radius-lg);
+  }
+
+  .legal-placeholder p {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    margin: 0;
+  }
+
+  .legal-placeholder a {
+    color: var(--gp-navy);
+    text-underline-offset: 2px;
+  }
+</style>
