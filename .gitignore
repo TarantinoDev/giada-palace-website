@@ -1,0 +1,21 @@
+﻿# Raw assets — never commit photos to git
+assets/
+src/assets/raw/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Vercel
+.vercel/
+
+# OS files
+.DS_Store
+Thumbs.db
