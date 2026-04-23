@@ -16,6 +16,15 @@ const jobs = [
   // --- pool daytime (Fix 6) ---
   { src: 'assets/exterior/16.jpg',                         dst: 'src/assets/images/pool/pool-daytime.jpg' },
 
+  // --- pool carousel (Fix 3 PR-FIX-4) — 7 images ---
+  { src: 'assets/pool/hero-sunset.jpg', dst: 'src/assets/images/pool/pool-01.jpg' },
+  { src: 'assets/pool/4.jpg',           dst: 'src/assets/images/pool/pool-02.jpg' },
+  { src: 'assets/pool/6.jpg',           dst: 'src/assets/images/pool/pool-03.jpg' },
+  { src: 'assets/pool/8.jpg',           dst: 'src/assets/images/pool/pool-04.jpg' },
+  { src: 'assets/pool/12.jpg',          dst: 'src/assets/images/pool/pool-05.jpg' },
+  { src: 'assets/pool/15.jpg',          dst: 'src/assets/images/pool/pool-06.jpg' },
+  { src: 'assets/pool/17.jpg',          dst: 'src/assets/images/pool/pool-07.jpg' },
+
   // --- apartment-a gallery (Fix 3) — 20 images, best-first order ---
   { src: 'assets/units/apartment-a/CAMERA DA LETTO 4.jpg',       dst: 'src/assets/images/units/apartment-a/gallery-01.jpg' },
   { src: 'assets/units/apartment-a/CAMERA DA LETTO 1.jpg',       dst: 'src/assets/images/units/apartment-a/gallery-02.jpg' },
