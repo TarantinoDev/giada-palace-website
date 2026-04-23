@@ -171,7 +171,15 @@ const labels: ContactFormLabels = {
     </div>
   </section>
 
-  <!-- Map placeholder -->
+  <!-- Map placeholder
+       TODO PR-9 (full): once the Iubenda CS script is live, replace the
+       static placeholder div below with a consent-gated Google Maps iframe:
+         - If _iub.cs.api.isConsentGiven('maps') → render <iframe> embed
+         - Else → show this placeholder + an "accetta i cookie" button that
+           calls _iub.cs.api.openPreferences() to surface the consent panel
+       Google Maps embed URL: https://maps.google.com/maps?q={{LAT}},{{LON}}&z=15&output=embed
+       (LAT/LON from spec §2 — provide when Gennaro confirms the street address)
+  -->
   <section class="contact-map-section" aria-labelledby="map-heading">
     <div class="container">
       <h2 id="map-heading" class="contact-map-heading">Come raggiungerci</h2>
