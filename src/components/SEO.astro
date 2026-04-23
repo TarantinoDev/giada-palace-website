@@ -1,0 +1,70 @@
+---
+import type { Lang } from '../i18n/ui';
+import { getPathWithLang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  lang: Lang;
+  currentPath: string;
+  ogImage?: string;
+  noindex?: boolean;
+  /** Override hreflang hrefs per locale (for pages where slugs differ between locales). */
+  alternates?: Partial<Record<Lang, string>>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  lang,
+  currentPath,
+  ogImage,
+  noindex = false,
+  alternates,
+} = Astro.props;
+
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL ?? 'https://giadapalace.it').replace(/\/$/, '');
+
+const allLangs: Lang[] = ['it', 'en', 'de', 'fr'];
+
+const ogLocaleMap: Record<Lang, string> = {
+  it: 'it_IT',
+  en: 'en_US',
+  de: 'de_DE',
+  fr: 'fr_FR',
+};
+
+function alternateHref(targetLang: Lang): string {
+  const path = alternates?.[targetLang] ?? getPathWithLang(currentPath, targetLang);
+  return `${siteUrl}${path}`;
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content="Giada Palace" />
+<meta property="og:locale" content={ogLocaleMap[lang]} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+<!-- Hreflang -->
+{allLangs.map((l) => (
+  <link rel="alternate" hreflang={l} href={alternateHref(l)} />
+))}
+<link rel="alternate" hreflang="x-default" href={alternateHref('it')} />

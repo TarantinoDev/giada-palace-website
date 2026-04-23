@@ -1,14 +1,11 @@
 ---
 export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Giada Palace</title>
-  </head>
-  <body>
-    <h1>Giada Palace</h1>
-  </body>
-</html>
+
+<BaseLayout
+  title="Appartamenti e camere Lucca con piscina | Giada Palace"
+  description="Appartamenti e camere a due passi da Lucca con piscina estiva, parcheggio e Wi-Fi gratuiti. Ideale per vacanze in famiglia e soggiorni di lavoro."
+>
+  <h1>Giada Palace</h1>
+</BaseLayout>
