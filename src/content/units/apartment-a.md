@@ -1,48 +1,52 @@
 ---
 slug: apartment-a
 name:
-  it: "Appartamento A"
-  en: "Apartment A"
+  it: "Appartamento con Cucina e Balcone"
+  en: "Apartment with Kitchen and Balcony"
 category: apartment
 order: 1
-maxGuests: 4
-bedConfiguration: "1 letto matrimoniale"
+maxGuests: 6
+bedConfiguration: "2 camere da letto, letto matrimoniale + letto singolo"
 heroImage: ../../assets/images/units/apartment-a/hero.jpg
 gallery:
   - ../../assets/images/units/apartment-a/hero.jpg
 features:
   it:
-    - "Cucina attrezzata"
-    - "Zona giorno con divano e TV"
+    - "Cucina attrezzata completa"
+    - "Zona giorno con divano"
     - "Balcone privato"
-    - "Camera matrimoniale"
-    - "Bagno privato con doccia"
+    - "2 camere da letto"
+    - "Bagno privato con doccia e bidet"
     - "Aria condizionata"
+    - "TV satellitare"
+    - "Frigobar"
     - "Wi-Fi gratuito"
-    - "Pulizia e biancheria incluse"
-    - "Accesso alla piscina (aprile–ottobre)"
-    - "Parcheggio privato"
+    - "Parcheggio privato incluso"
+    - "Accesso piscina stagionale (aprile–ottobre)"
+    - "Biancheria inclusa"
   en:
-    - "Fitted kitchen"
-    - "Living area with sofa and TV"
+    - "Fully equipped kitchen"
+    - "Living area with sofa"
     - "Private balcony"
-    - "Double bedroom"
-    - "Private bathroom with shower"
+    - "2 bedrooms"
+    - "Private bathroom with shower and bidet"
     - "Air conditioning"
+    - "Satellite TV"
+    - "Mini fridge"
     - "Free Wi-Fi"
-    - "Cleaning and linen included"
-    - "Pool access (April–October)"
-    - "Private parking"
+    - "Private parking included"
+    - "Seasonal pool access (April–October)"
+    - "Linen included"
 shortDescription:
-  it: "Appartamento spazioso con cucina attrezzata, zona giorno, balcone privato e vista sul giardino. Fino a 4 ospiti."
-  en: "Spacious apartment with fitted kitchen, living area, private balcony and garden view. Sleeps up to 4 guests."
+  it: "Appartamento spazioso con cucina attrezzata, zona giorno, balcone privato e vista sul giardino. Fino a 6 ospiti."
+  en: "Spacious apartment with fitted kitchen, living area, private balcony and garden view. Sleeps up to 6 guests."
 seo:
   it:
-    title: "Appartamento A con cucina e balcone | Giada Palace"
-    description: "Appartamento spazioso con cucina attrezzata, balcone privato e vista sul giardino a Lucca. Piscina estiva e parcheggio inclusi."
+    title: "Appartamento con Cucina e Balcone | Giada Palace Lucca"
+    description: "Appartamento con cucina attrezzata, 2 camere, balcone privato e vista sul giardino a Lucca. Piscina estiva e parcheggio inclusi. Fino a 6 ospiti."
   en:
-    title: "Apartment A with kitchen and balcony | Giada Palace"
-    description: "Spacious apartment with fitted kitchen, private balcony and garden view near Lucca. Outdoor pool and parking included."
+    title: "Apartment with Kitchen and Balcony | Giada Palace Lucca"
+    description: "Apartment with fitted kitchen, 2 bedrooms, private balcony and garden view near Lucca. Outdoor pool and parking included. Up to 6 guests."
 availableOnRequest: true
 seasonalNote: "Piscina disponibile da aprile a ottobre"
 isDraft: false

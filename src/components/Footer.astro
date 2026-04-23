@@ -54,6 +54,14 @@ const piva           = import.meta.env.PUBLIC_PIVA            as string | undefi
       <address>
         <a href={`mailto:${email}`}>{email}</a>
         <a href={`tel:${phoneHref}`}>{phone}</a>
+        <span class="footer-address">{t('footer.address')}</span>
+        <span class="footer-hours">{t('footer.checkin')} &nbsp;|&nbsp; {t('footer.checkout')}</span>
+        <a
+          href="https://maps.google.com/?q=Trav.+Via+Carlo+Piaggia+118,+55100+Lucca"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-directions"
+        >{t('footer.directions')}</a>
       </address>
     </div>
 
@@ -133,6 +141,24 @@ const piva           = import.meta.env.PUBLIC_PIVA            as string | undefi
 
   .footer-links a:hover,
   .footer-contact a:hover {
+    color: var(--gp-white);
+  }
+
+  .footer-address,
+  .footer-hours {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.55);
+    line-height: var(--leading-snug);
+  }
+
+  .footer-directions {
+    font-size: var(--text-sm);
+    color: var(--gp-coral-light);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .footer-directions:hover {
     color: var(--gp-white);
   }
 

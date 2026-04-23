@@ -1,8 +1,8 @@
 ---
 slug: room-5
 name:
-  it: "Camera 5"
-  en: "Room 5"
+  it: "Camera Singola"
+  en: "Single Room"
 category: single
 order: 5
 maxGuests: 1
@@ -12,33 +12,39 @@ gallery:
   - ../../assets/images/units/room-5/hero.jpg
 features:
   it:
-    - "Letto singolo"
-    - "Bagno privato"
+    - "Letto singolo in ferro battuto"
+    - "Bagno privato con doccia e bidet"
     - "Aria condizionata"
-    - "TV, scrivania"
-    - "Wi-Fi"
-    - "Pulizia e biancheria incluse"
-    - "Accesso piscina"
-    - "Parcheggio privato"
+    - "TV satellitare"
+    - "Frigobar"
+    - "Scrivania"
+    - "Wi-Fi gratuito"
+    - "Parcheggio privato incluso"
+    - "Accesso piscina stagionale (aprile–ottobre)"
+    - "Biancheria inclusa"
+    - "Linea di cortesia"
   en:
-    - "Single bed"
-    - "Private bathroom"
+    - "Wrought iron single bed"
+    - "Private bathroom with shower and bidet"
     - "Air conditioning"
-    - "TV, desk"
-    - "Wi-Fi"
-    - "Cleaning and linen included"
-    - "Pool access"
-    - "Private parking"
+    - "Satellite TV"
+    - "Mini fridge"
+    - "Desk"
+    - "Free Wi-Fi"
+    - "Private parking included"
+    - "Seasonal pool access (April–October)"
+    - "Linen included"
+    - "Toiletry set"
 shortDescription:
   it: "Camera singola compatta e ordinata, pensata per chi viaggia solo, con bagno privato e tutti i comfort essenziali."
   en: "Compact and tidy single room, designed for solo travellers, with private bathroom and all essential comforts."
 seo:
   it:
-    title: "Camera 5 singola con bagno privato | Giada Palace"
-    description: "Camera singola con bagno privato, aria condizionata, TV e scrivania. Ideale per soggiorni di lavoro vicino Lucca. Piscina e parcheggio inclusi."
+    title: "Camera Singola con bagno privato | Giada Palace Lucca"
+    description: "Camera singola con letto in ferro battuto, bagno privato con doccia e bidet, aria condizionata. Ideale per lavoro vicino Lucca. Piscina e parcheggio inclusi."
   en:
-    title: "Room 5 single with private bathroom | Giada Palace"
-    description: "Single room with private bathroom, air conditioning, TV and desk. Ideal for business stays near Lucca. Pool and parking included."
+    title: "Single Room with private bathroom | Giada Palace Lucca"
+    description: "Single room with wrought iron bed, private bathroom with shower and bidet, air conditioning. Ideal for business stays near Lucca. Pool and parking included."
 availableOnRequest: true
 seasonalNote: "Piscina disponibile da aprile a ottobre"
 isDraft: false

@@ -71,6 +71,23 @@ const canonicalUrl = canonical ?? Astro.url.href;
     <slot name="head" />
   </head>
   <body>
+    <div id="gp-splash" style="display:none">
+      <p class="gp-splash-title">Giada Palace</p>
+      <p class="gp-splash-sub">Rooms &amp; Apartments · Lucca</p>
+    </div>
+    <script>
+      (function () {
+        if (!sessionStorage.getItem('gp_splash')) {
+          var el = document.getElementById('gp-splash');
+          if (el) {
+            var splash = el;
+            splash.style.display = 'flex';
+            sessionStorage.setItem('gp_splash', '1');
+            splash.addEventListener('animationend', function () { splash.remove(); }, { once: true });
+          }
+        }
+      })();
+    </script>
     <Header lang={lang} currentPath={Astro.url.pathname} />
     <main>
       <slot />
@@ -78,3 +95,44 @@ const canonicalUrl = canonical ?? Astro.url.href;
     <Footer lang={lang} />
   </body>
 </html>
+
+<style>
+  #gp-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--gp-cream);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: gp-splash-fade 1.7s ease forwards;
+    pointer-events: none;
+  }
+
+  @keyframes gp-splash-fade {
+    0%    { opacity: 0; }
+    23.5% { opacity: 1; }
+    70.6% { opacity: 1; }
+    100%  { opacity: 0; }
+  }
+
+  .gp-splash-title {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--gp-navy);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .gp-splash-sub {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--gp-muted);
+    text-transform: uppercase;
+    margin: 0;
+  }
+</style>

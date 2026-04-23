@@ -25,6 +25,10 @@ export const ui = {
     'footer.cookie':      'Cookie Policy',
     'footer.preferences': 'Preferenze cookie',
     'footer.copyright':   '© {year} Giada Palace. Tutti i diritti riservati.',
+    'footer.address':     'Trav. Via Carlo Piaggia 118, 55100 Lucca (LU)',
+    'footer.checkin':     'Check-in: dalle 11:00',
+    'footer.checkout':    'Check-out: entro 10:30',
+    'footer.directions':  'Come arrivare →',
     'lang.label': 'Lingua',
     // Listing pages
     'listing.apartments.eyebrow':    '— Appartamenti —',
@@ -112,6 +116,10 @@ export const ui = {
     'footer.cookie':      'Cookie Policy',
     'footer.preferences': 'Cookie preferences',
     'footer.copyright':   '© {year} Giada Palace. All rights reserved.',
+    'footer.address':     'Trav. Via Carlo Piaggia 118, 55100 Lucca (LU)',
+    'footer.checkin':     'Check-in: from 11:00',
+    'footer.checkout':    'Check-out: by 10:30',
+    'footer.directions':  'Get directions →',
     'lang.label': 'Language',
     // Listing pages
     'listing.apartments.eyebrow':    '— Apartments —',

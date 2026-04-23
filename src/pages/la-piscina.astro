@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactCTAFooter from '../components/ContactCTAFooter.astro';
 import poolHero from '../assets/images/pool/hero-sunset.jpg';
+import facadeImg from '../assets/images/exterior/facade-day.jpg';
 ---
 
 <BaseLayout
@@ -122,14 +123,14 @@ import poolHero from '../assets/images/pool/hero-sunset.jpg';
   <!-- Full-width photo -->
   <div class="pool-photo-section">
     <Image
-      src={poolHero}
-      alt="La piscina rotonda del Giada Palace al tramonto, con acqua cristallina e vista sul giardino"
+      src={facadeImg}
+      alt="Facciata del Giada Palace con la piscina in primo piano e il giardino privato"
       widths={[768, 1200, 1800]}
       sizes="100vw"
       class="pool-photo-img"
       loading="lazy"
     />
-    <p class="pool-photo-caption container">La piscina del Giada Palace al tramonto</p>
+    <p class="pool-photo-caption container">Il Giada Palace e la piscina all'aperto</p>
   </div>
 
   <ContactCTAFooter />
