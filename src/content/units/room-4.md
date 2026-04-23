@@ -1,8 +1,8 @@
 ---
 slug: room-4
 name:
-  it: "Camera 4"
-  en: "Room 4"
+  it: "Camera Matrimoniale"
+  en: "Double Room"
 category: double
 order: 4
 maxGuests: 2
@@ -13,32 +13,38 @@ gallery:
 features:
   it:
     - "Letto matrimoniale in ferro battuto"
-    - "Bagno privato con doccia"
+    - "Bagno privato con doccia e bidet"
     - "Aria condizionata"
-    - "TV, scrivania, armadio"
-    - "Wi-Fi"
-    - "Pulizia e biancheria incluse"
-    - "Accesso piscina"
-    - "Parcheggio privato"
+    - "TV satellitare"
+    - "Frigobar"
+    - "Scrivania"
+    - "Wi-Fi gratuito"
+    - "Parcheggio privato incluso"
+    - "Accesso piscina stagionale (aprile–ottobre)"
+    - "Biancheria inclusa"
+    - "Linea di cortesia"
   en:
     - "Wrought iron double bed"
-    - "Private bathroom with shower"
+    - "Private bathroom with shower and bidet"
     - "Air conditioning"
-    - "TV, desk, wardrobe"
-    - "Wi-Fi"
-    - "Cleaning and linen included"
-    - "Pool access"
-    - "Private parking"
+    - "Satellite TV"
+    - "Mini fridge"
+    - "Desk"
+    - "Free Wi-Fi"
+    - "Private parking included"
+    - "Seasonal pool access (April–October)"
+    - "Linen included"
+    - "Toiletry set"
 shortDescription:
   it: "Camera matrimoniale recentemente ristrutturata, con letto in ferro battuto, arredi contemporanei e bagno privato. Per 2 ospiti."
   en: "Recently renovated double room with wrought iron bed, contemporary furnishings and private bathroom. For 2 guests."
 seo:
   it:
-    title: "Camera 4 con letto in ferro battuto | Giada Palace"
-    description: "Camera matrimoniale ristrutturata con letto in ferro battuto, bagno privato e aria condizionata. Piscina e parcheggio inclusi vicino Lucca."
+    title: "Camera Matrimoniale in ferro battuto | Giada Palace Lucca"
+    description: "Camera matrimoniale con letto in ferro battuto, bagno privato con doccia e bidet, aria condizionata. Piscina e parcheggio inclusi vicino Lucca."
   en:
-    title: "Room 4 with wrought iron bed | Giada Palace"
-    description: "Renovated double room with wrought iron bed, private bathroom and air conditioning. Pool and parking included near Lucca."
+    title: "Double Room with wrought iron bed | Giada Palace Lucca"
+    description: "Double room with wrought iron bed, private bathroom with shower and bidet, air conditioning. Pool and parking included near Lucca."
 availableOnRequest: true
 seasonalNote: "Piscina disponibile da aprile a ottobre"
 isDraft: false
