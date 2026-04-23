@@ -5,7 +5,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   site: 'https://giadapalace.it',
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel(),
   integrations: [
     react(),
