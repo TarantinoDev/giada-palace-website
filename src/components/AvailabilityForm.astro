@@ -1,0 +1,91 @@
+---
+---
+
+<form class="avail-form" method="GET" action="/contatti">
+  <div class="avail-field">
+    <label for="avail-from">Arrivo</label>
+    <input type="date" id="avail-from" name="from" required />
+  </div>
+  <div class="avail-field">
+    <label for="avail-to">Partenza</label>
+    <input type="date" id="avail-to" name="to" required />
+  </div>
+  <div class="avail-field">
+    <label for="avail-guests">Ospiti</label>
+    <select id="avail-guests" name="guests">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+        <option value={n}>{n} {n === 1 ? 'ospite' : 'ospiti'}</option>
+      ))}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary avail-submit">
+    Richiedi <span aria-hidden="true">→</span>
+  </button>
+</form>
+
+<style>
+  .avail-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .avail-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .avail-field label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .avail-field input,
+  .avail-field select {
+    height: 44px;
+    padding-inline: var(--space-4);
+    background: rgba(255, 255, 255, 0.96);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--gp-ink);
+    cursor: pointer;
+    min-width: 140px;
+  }
+
+  .avail-field input:focus,
+  .avail-field select:focus {
+    outline: 2px solid var(--gp-coral);
+    outline-offset: 2px;
+  }
+
+  .avail-submit {
+    height: 44px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 767px) {
+    .avail-form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .avail-field input,
+    .avail-field select {
+      min-width: unset;
+      width: 100%;
+    }
+
+    .avail-submit {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

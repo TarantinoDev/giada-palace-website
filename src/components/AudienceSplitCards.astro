@@ -1,0 +1,141 @@
+---
+---
+
+<section class="audience-section">
+  <div class="container">
+    <div class="audience-header">
+      <span class="eyebrow">— Per chi viaggia —</span>
+      <h2>Cosa ti porta a Lucca?</h2>
+    </div>
+    <div class="audience-grid">
+
+      <div class="audience-card audience-card--leisure">
+        <span class="audience-tag">Vacanza</span>
+        <h3>In vacanza a Lucca</h3>
+        <p>
+          Piscina, famiglia, tempo lento. Appartamenti con cucina per chi
+          vuole spazio e autonomia.
+        </p>
+        <a href="/appartamenti" class="btn btn-secondary audience-cta">
+          Scopri gli appartamenti <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="audience-card audience-card--business">
+        <span class="audience-tag">Lavoro</span>
+        <h3>Per lavoro a Lucca</h3>
+        <p>
+          Camere comode, Wi‑Fi veloce, scrivania, parcheggio facile.
+          Pronto al lavoro, pronto a staccare.
+        </p>
+        <a href="/camere" class="btn audience-cta audience-cta--light">
+          Scopri le camere <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-section {
+    padding-block: var(--space-20);
+    background-color: var(--gp-white);
+  }
+
+  .audience-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .audience-header .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .audience-card {
+    padding: var(--space-12);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .audience-card--leisure {
+    background-color: var(--gp-cream);
+    border: 1px solid var(--gp-border-soft);
+  }
+
+  .audience-card--business {
+    background-color: var(--gp-navy);
+    color: var(--gp-white);
+  }
+
+  .audience-tag {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gp-coral);
+    margin-bottom: var(--space-1);
+  }
+
+  .audience-card--business .audience-tag {
+    color: var(--gp-coral-light);
+  }
+
+  .audience-card h3 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--gp-ink);
+  }
+
+  .audience-card--business h3 {
+    color: var(--gp-white);
+  }
+
+  .audience-card p {
+    font-size: var(--text-md);
+    line-height: var(--leading-normal);
+    color: var(--gp-muted);
+    flex: 1;
+  }
+
+  .audience-card--business p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .audience-cta {
+    align-self: flex-start;
+    margin-top: var(--space-4);
+  }
+
+  /* On the navy card, use a white-outlined ghost button */
+  .audience-cta--light {
+    background: transparent;
+    color: var(--gp-white);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .audience-cta--light:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--gp-white);
+    color: var(--gp-white);
+  }
+
+  @media (max-width: 767px) {
+    .audience-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .audience-card {
+      padding: var(--space-8);
+    }
+  }
+</style>
