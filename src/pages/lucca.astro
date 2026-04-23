@@ -24,11 +24,19 @@ import luccaPhoto from '../assets/images/lucca/lucca-centro.jpg';
     </div>
   </section>
 
-  <!-- Intro + photo -->
-  <section class="lucca-intro-section">
-    <div class="container lucca-intro-grid">
-
-      <div class="lucca-intro-text">
+  <!-- Intro full-bleed photo -->
+  <section class="lucca-photohero">
+    <Image
+      src={luccaPhoto}
+      alt="Il centro storico di Lucca con le antiche mura rinascimentali"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      class="lucca-photohero-bg"
+      loading="lazy"
+    />
+    <div class="lucca-photohero-overlay" aria-hidden="true"></div>
+    <div class="container lucca-photohero-inner">
+      <div class="lucca-photohero-card">
         <span class="eyebrow">— La posizione —</span>
         <h2>Fuori dalle mura, a due passi da tutto</h2>
         <p>
@@ -44,18 +52,6 @@ import luccaPhoto from '../assets/images/lucca/lucca-centro.jpg';
           delle zone a traffico limitato.
         </p>
       </div>
-
-      <div class="lucca-intro-img-wrap">
-        <Image
-          src={luccaPhoto}
-          alt="Il centro storico di Lucca con le antiche mura rinascimentali"
-          widths={[640, 960, 1280]}
-          sizes="(max-width: 767px) 100vw, 50vw"
-          class="lucca-intro-img"
-          loading="lazy"
-        />
-      </div>
-
     </div>
   </section>
 
@@ -267,54 +263,68 @@ import luccaPhoto from '../assets/images/lucca/lucca-centro.jpg';
     margin: 0;
   }
 
-  /* Intro */
-  .lucca-intro-section {
-    padding-block: var(--space-20);
-    background: var(--gp-white);
-  }
-
-  .lucca-intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-16);
+  /* Intro full-bleed photo */
+  .lucca-photohero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
     align-items: center;
+    overflow: hidden;
   }
 
-  .lucca-intro-text {
+  .lucca-photohero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .lucca-photohero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 30, 40, 0.60);
+    z-index: 1;
+  }
+
+  .lucca-photohero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding-block: var(--space-20);
+  }
+
+  .lucca-photohero-card {
+    background: var(--gp-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-12) var(--space-16);
+    max-width: 660px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--space-5);
   }
 
-  .lucca-intro-text .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
+  .lucca-photohero-card .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
 
-  .lucca-intro-text h2 {
+  .lucca-photohero-card h2 {
     font-size: var(--text-2xl);
     margin: 0;
   }
 
-  .lucca-intro-text p {
+  .lucca-photohero-card p {
     font-size: var(--text-md);
     line-height: var(--leading-normal);
     color: var(--gp-muted);
     margin: 0;
   }
 
-  .lucca-intro-text strong {
+  .lucca-photohero-card strong {
     color: var(--gp-ink);
     font-weight: var(--weight-semibold);
-  }
-
-  .lucca-intro-img-wrap {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .lucca-intro-img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    display: block;
   }
 
   /* Shared section heading */
@@ -526,7 +536,7 @@ import luccaPhoto from '../assets/images/lucca/lucca-centro.jpg';
 
   @media (max-width: 767px) {
     .lucca-h1 { font-size: var(--text-2xl); }
-    .lucca-intro-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+    .lucca-photohero-card { padding: var(--space-8); }
     .lucca-distances-grid { grid-template-columns: 1fr; }
     .lucca-map-placeholder { height: 240px; }
   }
