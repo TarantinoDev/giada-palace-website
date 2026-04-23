@@ -9,7 +9,26 @@ maxGuests: 6
 bedConfiguration: "2 camere da letto, letto matrimoniale + letto singolo"
 heroImage: ../../assets/images/units/apartment-a/hero.jpg
 gallery:
-  - ../../assets/images/units/apartment-a/hero.jpg
+  - ../../assets/images/units/apartment-a/gallery-01.jpg
+  - ../../assets/images/units/apartment-a/gallery-02.jpg
+  - ../../assets/images/units/apartment-a/gallery-03.jpg
+  - ../../assets/images/units/apartment-a/gallery-04.jpg
+  - ../../assets/images/units/apartment-a/gallery-05.jpg
+  - ../../assets/images/units/apartment-a/gallery-06.jpg
+  - ../../assets/images/units/apartment-a/gallery-07.jpg
+  - ../../assets/images/units/apartment-a/gallery-08.jpg
+  - ../../assets/images/units/apartment-a/gallery-09.jpg
+  - ../../assets/images/units/apartment-a/gallery-10.jpg
+  - ../../assets/images/units/apartment-a/gallery-11.jpg
+  - ../../assets/images/units/apartment-a/gallery-12.jpg
+  - ../../assets/images/units/apartment-a/gallery-13.jpg
+  - ../../assets/images/units/apartment-a/gallery-14.jpg
+  - ../../assets/images/units/apartment-a/gallery-15.jpg
+  - ../../assets/images/units/apartment-a/gallery-16.jpg
+  - ../../assets/images/units/apartment-a/gallery-17.jpg
+  - ../../assets/images/units/apartment-a/gallery-18.jpg
+  - ../../assets/images/units/apartment-a/gallery-19.jpg
+  - ../../assets/images/units/apartment-a/gallery-20.jpg
 features:
   it:
     - "Cucina attrezzata completa"

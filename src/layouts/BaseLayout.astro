@@ -5,10 +5,12 @@ import '../styles/reset.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
 
+import { Image } from 'astro:assets';
 import SEO from '../components/SEO.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { Lang } from '../i18n/ui';
+import logoImg from '../assets/images/logo/giada-palace-logo.png';
 
 interface Props {
   title: string;
@@ -72,8 +74,7 @@ const canonicalUrl = canonical ?? Astro.url.href;
   </head>
   <body>
     <div id="gp-splash" style="display:none">
-      <p class="gp-splash-title">Giada Palace</p>
-      <p class="gp-splash-sub">Rooms &amp; Apartments · Lucca</p>
+      <Image src={logoImg} alt="Giada Palace" style="max-width: 280px; width: 100%;" />
     </div>
     <script>
       (function () {
@@ -117,22 +118,4 @@ const canonicalUrl = canonical ?? Astro.url.href;
     100%  { opacity: 0; }
   }
 
-  .gp-splash-title {
-    font-family: var(--font-serif);
-    font-size: 48px;
-    font-weight: 400;
-    color: var(--gp-navy);
-    margin: 0;
-    line-height: 1;
-  }
-
-  .gp-splash-sub {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    color: var(--gp-muted);
-    text-transform: uppercase;
-    margin: 0;
-  }
 </style>

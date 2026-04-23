@@ -3,7 +3,7 @@ export const prerender = true;
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactCTAFooter from '../components/ContactCTAFooter.astro';
-import facadeDay from '../assets/images/exterior/facade-day.jpg';
+import luccaPhoto from '../assets/images/lucca/lucca-centro.jpg';
 ---
 
 <BaseLayout
@@ -32,8 +32,8 @@ import facadeDay from '../assets/images/exterior/facade-day.jpg';
         <span class="eyebrow">— La posizione —</span>
         <h2>Fuori dalle mura, a due passi da tutto</h2>
         <p>
-          Giada Palace si trova appena fuori dalla cerchia delle Mura, nel quartiere
-          residenziale di Lucca Est. La struttura dispone di <strong>parcheggio privato
+          Giada Palace si trova appena fuori dalla cerchia delle Mura,
+          nella prima periferia della città, nel quartiere di Lucca Est. La struttura dispone di <strong>parcheggio privato
           gratuito</strong>, una comodità rara per chi visita la città in auto. A
           cinquanta metri dalla struttura trovate la <strong>fermata bus per il centro</strong>,
           che vi porta direttamente alla Porta Elisa in pochi minuti.
@@ -47,8 +47,8 @@ import facadeDay from '../assets/images/exterior/facade-day.jpg';
 
       <div class="lucca-intro-img-wrap">
         <Image
-          src={facadeDay}
-          alt="La facciata del Giada Palace in una giornata di sole, con il giardino esterno"
+          src={luccaPhoto}
+          alt="Il centro storico di Lucca con le antiche mura rinascimentali"
           widths={[640, 960, 1280]}
           sizes="(max-width: 767px) 100vw, 50vw"
           class="lucca-intro-img"

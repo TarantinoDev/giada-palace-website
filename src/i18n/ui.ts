@@ -97,6 +97,7 @@ export const ui = {
     'contact.form.submitting':          'Invio in corso…',
     'contact.form.success':             'Grazie! Abbiamo ricevuto la tua richiesta e ti risponderemo entro 24 ore.',
     'contact.form.error':               "C'è stato un problema. Riprova o scrivici a",
+    'contact.form.wa_submit':           'Invia su WhatsApp →',
     'contact.map.placeholder':          'La mappa interattiva è disponibile dopo aver accettato i cookie di terze parti.',
   },
   en: {
@@ -188,6 +189,7 @@ export const ui = {
     'contact.form.submitting':          'Sending…',
     'contact.form.success':             'Thank you! We have received your request and will reply within 24 hours.',
     'contact.form.error':               'Something went wrong. Please try again or email us at',
+    'contact.form.wa_submit':           'Send via WhatsApp →',
     'contact.map.placeholder':          'The interactive map is available after accepting third-party cookies.',
   },
   de: {

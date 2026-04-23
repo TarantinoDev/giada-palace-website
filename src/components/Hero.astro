@@ -18,16 +18,17 @@ import AvailabilityForm from './AvailabilityForm.astro';
   <div class="hero-overlay" aria-hidden="true"></div>
 
   <div class="hero-content container">
-    <span class="eyebrow hero-eyebrow">Lucca — a 15 minuti a piedi dalle mura</span>
-    <h1 class="hero-h1">
-      La tua casa in Toscana,<br>
-      <em>con la piscina sotto casa</em>
-    </h1>
-    <p class="hero-subtitle">
-      Appartamenti e camere a due passi da Lucca, con piscina estiva,
-      parcheggio privato e navetta urbana a 50 mt.
-    </p>
-    <AvailabilityForm />
+    <div class="hero-card">
+      <h1 class="hero-h1">
+        La tua casa in Toscana,<br>
+        <em>con la piscina sotto casa</em>
+      </h1>
+      <p class="hero-subtitle">
+        Appartamenti e camere a due passi da Lucca, con piscina estiva,
+        parcheggio privato e navetta urbana a 50 mt.
+      </p>
+      <AvailabilityForm />
+    </div>
   </div>
 </section>
 
@@ -70,9 +71,13 @@ import AvailabilityForm from './AvailabilityForm.astro';
     padding-block: var(--space-20);
   }
 
-  .hero-eyebrow {
-    color: var(--gp-coral-light);
-    margin-bottom: var(--space-4);
+  .hero-card {
+    background: rgba(20, 30, 40, 0.55);
+    border-radius: 8px;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
   }
 
   .hero-h1 {
@@ -81,12 +86,12 @@ import AvailabilityForm from './AvailabilityForm.astro';
     font-weight: var(--weight-regular);
     line-height: var(--leading-tight);
     color: var(--gp-white);
-    margin-bottom: var(--space-5);
+    margin: 0;
   }
 
   .hero-h1 em {
     font-style: italic;
-    color: var(--gp-coral-light);
+    color: #C8A45C;
   }
 
   .hero-subtitle {
@@ -94,6 +99,7 @@ import AvailabilityForm from './AvailabilityForm.astro';
     line-height: var(--leading-snug);
     color: rgba(255, 255, 255, 0.85);
     max-width: 52ch;
+    margin: 0;
   }
 
   @media (max-width: 767px) {
@@ -114,6 +120,8 @@ import AvailabilityForm from './AvailabilityForm.astro';
       max-width: 100%;
       padding-bottom: var(--space-12);
     }
+
+    .hero-card { padding: 24px; }
 
     .hero-h1 {
       font-size: var(--text-2xl);

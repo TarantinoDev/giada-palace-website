@@ -106,8 +106,14 @@
   display: none;
 }
 
+.cf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
 .cf-submit {
-  align-self: flex-start;
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 500;
@@ -127,6 +133,24 @@
 .cf-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.cf-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: #25D366;
+  border-radius: 4px;
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.cf-wa-btn:hover {
+  background: #1ebe5c;
 }
 
 /* Success */
@@ -190,8 +214,14 @@
     grid-template-columns: 1fr;
   }
 
-  .cf-submit {
+  .cf-actions {
+    flex-direction: column;
+  }
+
+  .cf-submit,
+  .cf-wa-btn {
     width: 100%;
     text-align: center;
+    justify-content: center;
   }
 }

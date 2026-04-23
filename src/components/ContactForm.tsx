@@ -23,6 +23,7 @@ export interface ContactFormLabels {
   submitting: string;
   success: string;
   error: string;
+  waSubmit: string;
 }
 
 interface Props {
@@ -68,6 +69,10 @@ export default function ContactForm({
 
   const unitLabel = units.find((u) => u.slug === unit)?.name ?? unit;
   const subject = `[Richiesta Giada Palace] ${checkin || '—'} — ${checkout || '—'} — ${unitLabel || '—'}`;
+
+  const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER ?? '393513295448';
+  const waMessage = `Ciao, sono ${name || '...'} . Vorrei informazioni per ${unitLabel || 'una sistemazione'} dal ${checkin || '...'} al ${checkout || '...'} per ${guests || '...'} ospiti.`;
+  const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -266,13 +271,23 @@ export default function ContactForm({
         </label>
       </div>
 
-      <button
-        type="submit"
-        className="cf-submit"
-        disabled={status === 'submitting'}
-      >
-        {status === 'submitting' ? labels.submitting : labels.submit}
-      </button>
+      <div className="cf-actions">
+        <button
+          type="submit"
+          className="cf-submit"
+          disabled={status === 'submitting'}
+        >
+          {status === 'submitting' ? labels.submitting : labels.submit}
+        </button>
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cf-wa-btn"
+        >
+          {labels.waSubmit}
+        </a>
+      </div>
     </form>
   );
 }

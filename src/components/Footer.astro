@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
+import logoImg from '../assets/images/logo/giada-palace-logo.png';
 
 interface Props {
   lang: Lang;
@@ -29,7 +31,9 @@ const piva           = import.meta.env.PUBLIC_PIVA            as string | undefi
   <div class="footer-grid container">
 
     <div class="footer-brand">
-      <a href={homeHref} class="footer-logo">Giada Palace</a>
+      <a href={homeHref} class="footer-logo">
+        <Image src={logoImg} alt="Giada Palace" height={32} />
+      </a>
       <p class="footer-tagline">{t('footer.tagline')}</p>
     </div>
 
@@ -93,14 +97,10 @@ const piva           = import.meta.env.PUBLIC_PIVA            as string | undefi
   }
 
   .footer-logo {
-    display: inline-block;
-    font-family: var(--font-serif);
-    font-size: var(--text-xl);
-    font-weight: var(--weight-regular);
-    color: var(--gp-white);
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     margin-bottom: var(--space-3);
-    letter-spacing: -0.01em;
   }
 
   .footer-tagline {

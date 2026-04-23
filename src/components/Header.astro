@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import logoImg from '../assets/images/logo/giada-palace-logo.png';
 
 interface Props {
   lang: Lang;
@@ -57,7 +59,7 @@ function isActive(href: string): boolean {
   <div class="header-inner container">
 
     <a href={homeHref} class="header-logo" aria-label={t('header.logo.label')}>
-      Giada Palace
+      <Image src={logoImg} alt="Giada Palace — Rooms &amp; Apartments" height={40} />
     </a>
 
     <!-- CSS-only mobile toggle: checkbox must precede nav and label as siblings -->
@@ -106,13 +108,10 @@ function isActive(href: string): boolean {
   }
 
   .header-logo {
-    font-family: var(--font-serif);
-    font-size: var(--text-xl);
-    font-weight: var(--weight-regular);
-    color: var(--gp-navy);
+    display: flex;
+    align-items: center;
     text-decoration: none;
     flex-shrink: 0;
-    letter-spacing: -0.01em;
   }
 
   /* Hide the checkbox itself */

@@ -9,7 +9,11 @@ maxGuests: 1
 bedConfiguration: "1 letto singolo"
 heroImage: ../../assets/images/units/room-5/hero.jpg
 gallery:
-  - ../../assets/images/units/room-5/hero.jpg
+  - ../../assets/images/units/room-5/gallery-01.jpg
+  - ../../assets/images/units/room-5/gallery-02.jpg
+  - ../../assets/images/units/room-5/gallery-03.jpg
+  - ../../assets/images/units/room-5/gallery-04.jpg
+  - ../../assets/images/units/room-5/gallery-05.jpg
 features:
   it:
     - "Letto singolo in ferro battuto"
