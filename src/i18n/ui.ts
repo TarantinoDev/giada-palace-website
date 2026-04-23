@@ -9,7 +9,8 @@ export type Lang = keyof typeof languages;
 
 export const ui = {
   it: {
-    'nav.units':   'Appartamenti e camere',
+    'nav.apartments': 'Appartamenti',
+    'nav.rooms':      'Camere',
     'nav.pool':    'La piscina',
     'nav.lucca':   'Lucca',
     'nav.contact': 'Contatti',
@@ -28,12 +29,15 @@ export const ui = {
     // Listing pages
     'listing.apartments.eyebrow':    '— Appartamenti —',
     'listing.apartments.h1':         'Appartamenti con cucina',
-    'listing.apartments.subtitle':   'Cucina attrezzata, zona giorno, balcone e piscina estiva.',
+    'listing.apartments.subtitle':   'Cucina attrezzata, zona giorno, balcone e piscina estiva. Disponibili più unità — contattaci per scegliere.',
     'listing.apartments.unit_label': 'appartamenti',
+    'listing.apartments.note':       'Hai esigenze specifiche? Contattaci — abbiamo altre soluzioni disponibili.',
     'listing.rooms.eyebrow':         '— Camere —',
     'listing.rooms.h1':              'Camere doppie e singole',
     'listing.rooms.subtitle':        'Bagno privato, aria condizionata, Wi-Fi e parcheggio inclusi.',
     'listing.rooms.unit_label':      'camere',
+    'listing.rooms.doubles':         'Camere matrimoniali',
+    'listing.rooms.singles':         'Camere singole',
     // Breadcrumb
     'breadcrumb.label':      'Percorso di navigazione',
     'breadcrumb.home':       'Home',
@@ -42,6 +46,7 @@ export const ui = {
     // Unit detail
     'unit.features':              'Servizi inclusi',
     'unit.guests_label':          'ospiti',
+    'unit.guest_singular':        'ospite',
     'unit.cta_availability':      'Verifica disponibilità',
     'unit.cta_whatsapp':          'Scrivi su WhatsApp',
     'unit.related':               'Unità simili',
@@ -91,7 +96,8 @@ export const ui = {
     'contact.map.placeholder':          'La mappa interattiva è disponibile dopo aver accettato i cookie di terze parti.',
   },
   en: {
-    'nav.units':   'Apartments & rooms',
+    'nav.apartments': 'Apartments',
+    'nav.rooms':      'Rooms',
     'nav.pool':    'The pool',
     'nav.lucca':   'Lucca',
     'nav.contact': 'Contact',
@@ -110,12 +116,15 @@ export const ui = {
     // Listing pages
     'listing.apartments.eyebrow':    '— Apartments —',
     'listing.apartments.h1':         'Apartments with kitchen',
-    'listing.apartments.subtitle':   'Fitted kitchen, living area, balcony and outdoor pool.',
+    'listing.apartments.subtitle':   'Fitted kitchen, living area, balcony and outdoor pool. Multiple units available — contact us to choose.',
     'listing.apartments.unit_label': 'apartments',
+    'listing.apartments.note':       'Have specific needs? Contact us — we have other solutions available.',
     'listing.rooms.eyebrow':         '— Rooms —',
     'listing.rooms.h1':              'Double and single rooms',
     'listing.rooms.subtitle':        'Private bathroom, air conditioning, Wi-Fi and parking included.',
     'listing.rooms.unit_label':      'rooms',
+    'listing.rooms.doubles':         'Double rooms',
+    'listing.rooms.singles':         'Single rooms',
     // Breadcrumb
     'breadcrumb.label':      'Breadcrumb',
     'breadcrumb.home':       'Home',
@@ -124,6 +133,7 @@ export const ui = {
     // Unit detail
     'unit.features':              "What's included",
     'unit.guests_label':          'guests',
+    'unit.guest_singular':        'guest',
     'unit.cta_availability':      'Check availability',
     'unit.cta_whatsapp':          'WhatsApp us',
     'unit.related':               'Similar units',
@@ -173,7 +183,8 @@ export const ui = {
     'contact.map.placeholder':          'The interactive map is available after accepting third-party cookies.',
   },
   de: {
-    'nav.units':   'Wohnungen & Zimmer',
+    'nav.apartments': 'Wohnungen',
+    'nav.rooms':      'Zimmer',
     'nav.pool':    'Der Pool',
     'nav.lucca':   'Lucca',
     'nav.contact': 'Kontakt',
@@ -192,12 +203,15 @@ export const ui = {
     // Listing pages
     'listing.apartments.eyebrow':    '— Wohnungen —',
     'listing.apartments.h1':         'Wohnungen mit Küche',
-    'listing.apartments.subtitle':   'Ausgestattete Küche, Wohnbereich, Balkon und Freibad.',
+    'listing.apartments.subtitle':   'Ausgestattete Küche, Wohnbereich, Balkon und Freibad. Mehrere Einheiten verfügbar — kontaktieren Sie uns.',
     'listing.apartments.unit_label': 'Wohnungen',
+    'listing.apartments.note':       'Spezielle Anforderungen? Kontaktieren Sie uns — wir haben weitere Lösungen.',
     'listing.rooms.eyebrow':         '— Zimmer —',
     'listing.rooms.h1':              'Doppel- und Einzelzimmer',
     'listing.rooms.subtitle':        'Eigenes Bad, Klimaanlage, WLAN und Parkplatz inklusive.',
     'listing.rooms.unit_label':      'Zimmer',
+    'listing.rooms.doubles':         'Doppelzimmer',
+    'listing.rooms.singles':         'Einzelzimmer',
     // Breadcrumb
     'breadcrumb.label':      'Breadcrumb',
     'breadcrumb.home':       'Startseite',
@@ -206,6 +220,7 @@ export const ui = {
     // Unit detail
     'unit.features':              'Ausstattung',
     'unit.guests_label':          'Gäste',
+    'unit.guest_singular':        'Gast',
     'unit.cta_availability':      'Verfügbarkeit prüfen',
     'unit.cta_whatsapp':          'WhatsApp schreiben',
     'unit.related':               'Ähnliche Einheiten',
@@ -255,7 +270,8 @@ export const ui = {
     'contact.map.placeholder':          'Die interaktive Karte ist nach Annahme der Drittanbieter-Cookies verfügbar.',
   },
   fr: {
-    'nav.units':   'Appartements & chambres',
+    'nav.apartments': 'Appartements',
+    'nav.rooms':      'Chambres',
     'nav.pool':    'La piscine',
     'nav.lucca':   'Lucca',
     'nav.contact': 'Contact',
@@ -274,12 +290,15 @@ export const ui = {
     // Listing pages
     'listing.apartments.eyebrow':    '— Appartements —',
     'listing.apartments.h1':         'Appartements avec cuisine',
-    'listing.apartments.subtitle':   'Cuisine équipée, séjour, balcon et piscine extérieure.',
+    'listing.apartments.subtitle':   'Cuisine équipée, séjour, balcon et piscine extérieure. Plusieurs unités disponibles — contactez-nous.',
     'listing.apartments.unit_label': 'appartements',
+    'listing.apartments.note':       'Besoins spécifiques ? Contactez-nous — nous avons d\'autres solutions disponibles.',
     'listing.rooms.eyebrow':         '— Chambres —',
     'listing.rooms.h1':              'Chambres doubles et simples',
     'listing.rooms.subtitle':        'Salle de bain privée, climatisation, Wi-Fi et parking inclus.',
     'listing.rooms.unit_label':      'chambres',
+    'listing.rooms.doubles':         'Chambres doubles',
+    'listing.rooms.singles':         'Chambres simples',
     // Breadcrumb
     'breadcrumb.label':      'Fil d\'Ariane',
     'breadcrumb.home':       'Accueil',
@@ -288,6 +307,7 @@ export const ui = {
     // Unit detail
     'unit.features':              'Équipements inclus',
     'unit.guests_label':          'hôtes',
+    'unit.guest_singular':        'hôte',
     'unit.cta_availability':      'Vérifier la disponibilité',
     'unit.cta_whatsapp':          'Écrire sur WhatsApp',
     'unit.related':               'Unités similaires',
